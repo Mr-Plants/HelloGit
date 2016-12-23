@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>招贤纳士-社会招聘</title>
+		<link href="style.css" rel="stylesheet" type="text/css" />
+		<base target="_blank" />
+		<script src="js/data.js"></script>
+	</head>
+			<!--步骤：先理清页面布局并生成页面
+				先尝试更改左边大标题
+			-->
+	<body>
+		<div id="wrap">
+			<div class="left">
+				<h2>招贤纳士</h2>
+				<ul>
+					<!--<li  class="focus"><a href="javascript:;">社会招聘</a></li>
+      				<li><a href="javascript:;">校园招聘</a></li> -->
+				</ul>
+			</div>
+			<div class="right">
+				<div class="title">
+					<img src="" />
+				</div>
+				<div class="info" id="info1">
+					<!--<p class="zp">
+			        	<span><a href="">★ 职位需求：测试工程师【社会招聘】</a></span>
+				        <span>需求人数：2名</span>
+				        <span class="date">2013年7月30日</span>
+			        </p>
+			      	<p class="yq">1.计算机或相关专业本科以上学历；2.从事软件测试工作3年及以上；3.具备良好的沟通能力和快速学习能力；4.精通测试策略和方法、测试用例设计；5.熟悉DB2、AIX等平台的基本操作；6.具备2年以上金...[<a href="">查看详情</a>]
+			        </p>
+			
+			      	<p class="zp">
+			        	<span><a href="">★ 职位需求：测试工程师【社会招聘】</a></span>
+			          	<span>需求人数：12名</span>
+			         	<span class="date">2013年7月30日</span>
+			        </p>
+			      	<p class="yq">1.计算机或相关专业本科以上学历；2.从事软件测试工作3年及以上；3.具备良好的沟通能力和快速学习能力；4.精通测试策略和方法、测试用例设计；5.熟悉DB2、AIX等平台的基本操作；6.具备2年以上金...[<a href="">查看详情</a>]
+			        </p>-->
+			
+			      	<!--<p class="zp">
+			        	<span><a href="">★ 职位需求：测试工程师【社会招聘】</a></span>
+			          	<span>需求人数：21名</span>
+			         	<span class="date">2013年7月30日</span>
+			        </p>
+			      	<p class="yq">1.计算机或相关专业本科以上学历；2.从事软件测试工作3年及以上；3.具备良好的沟通能力和快速学习能力；4.精通测试策略和方法、测试用例设计；5.熟悉DB2、AIX等平台的基本操作；6.具备2年以上金...[<a href="">查看详情</a>]
+			        </p> -->
+
+				</div>
+				<div class="pages">
+					<span class="prev" id="prev1">
+			          	<a href="javascript:;">
+			            	<img src="img/pre.gif">
+			          	</a>
+			        </span>
+					<span class="next" id="next1">
+				        <a href="javascript:;">
+			            	<img src="img/next.gif">
+				        </a>
+			        </span>
+					<p id="page1">
+						<span class="focus">
+			            	<a href="javascript:;">1</a>
+			            </span>
+			            <span>
+			            	<a href="javascript:;">2</a>
+			            </span>
+			            <span>
+			            	<a href="javascript:;">3</a>
+			            </span> 
+					</p>
+				</div>
+
+			</div>
+			<div class="clear"></div>
+		</div>
+		<script>
+			var ul=document.querySelector("#wrap .left ul");
+			var pic=document.querySelector("#wrap .right .title img");
+			var info1=document.getElementById("info1");
+			var se=window.location.search.substr(1);
+			var page1=document.getElementById("page1");
+			var pages=page1.getElementsByTagName("a");
+			var prev1=document.getElementById("prev1");
+			var next1=document.getElementById("next1");
+			var num=1;
+			//生成左边li ↓
+			var strUl=""; 
+			for (var i = 0; i < aData.list.length; i++){
+				strUl+="<li><a href='javascript:;'>"+aData.list[i].text+"</a></li>";
+			}
+			ul.innerHTML=strUl;
+			var lis=document.querySelectorAll("#wrap .left ul>li");
+			if(se==""||se=="sh"){
+				se="sh";
+				lis[0].className="focus";
+			}else if(se=="xy"){
+				lis[1].className="focus"; //初始化li
+			}
+			info(1); //
+			for (var i = 0; i < lis.length; i++) { //添加自定义属性name
+				lis[i].name=aData.list[i].lx;
+			}
+			pic.src=aData[se].img; //变量需要用方括号括起来。并且前面不能加点
+			for (var i = 0; i < lis.length; i++) { //添加li击事件函数
+				lis[i].onclick=function(){
+					window.location.search=this.name;
+				}
+			}
+
+			//生成info中的内容
+			function info(n){ //根据页码n生成页面信息
+				var strInfo="";
+				strInfo+="<p class='zp'><span><a href='content.html?"+se+"#"+(n*2-2)+"'>★ 职位需求："+aData[se].text[n*2-2].zw+"</a></span><span>需求人数："+aData[se].text[n*2-2].rs+"名</span><span class='date'>"+aData.date(aData[se].text[n*2-2].sj)+"</span></p><p class='yq'>"+aData[se].text[n*2-2].info[0].l.slice(0,5).join("")+"...[<a href='content.html?"+se+"#"+(n*2-2)+"'>查看详情</a>]</p>"
+				strInfo+="<p class='zp'><span><a href='content.html?"+se+"#"+(n*2-1)+"'>★ 职位需求："+aData[se].text[n*2-1].zw+"</a></span><span>需求人数："+aData[se].text[n*2-1].rs+"名</span><span class='date'>"+aData.date(aData[se].text[n*2-1].sj)+"</span></p><p class='yq'>"+aData[se].text[n*2-1].info[0].l.slice(0,5).join("")+"...[<a href='content.html?"+se+"#"+(n*2-1)+"'>查看详情</a>]</p>"
+				info1.innerHTML=strInfo;
+			}
+			for (var i = 0; i < pages.length; i++){
+				pages[i].index=i;
+				pages[i].onclick=function(){
+					var a=Number(this.innerHTML);
+					info(a);
+					for (var j = 0; j < pages.length; j++) {
+						pages[j].parentNode.className="";
+					}
+					this.parentNode.className="focus";
+					num=this.index+1;
+				}
+			}
+			prev1.onclick=function(){
+				num--;
+				if(num==0){
+					num=1;
+					alert("已经到头啦~");
+					return;
+				}
+				info(num);
+				for (var j = 0; j < pages.length; j++) {
+					pages[j].parentNode.className="";
+				}
+				pages[num-1].parentNode.className="focus";
+				console.log(num);
+			}
+			next1.onclick=function(){
+				num++;
+				if(num>pages.length){
+					num=pages.length;
+					alert("已经到头啦~");
+					return;
+				}
+				info(num);
+				for (var j = 0; j < pages.length; j++) {
+					pages[j].parentNode.className="";
+				}
+				pages[num-1].parentNode.className="focus";
+			}
+		</script>
+	</body>
+
+</html>
