@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>海鸥桌面</title>
+		<link rel="stylesheet" href="css/index.css" />
+		<link rel="icon" href="img/favicon.ico" type="image/x-icon">  
+		<script src="js/jq3.js" ></script>
+		<script src="js/tools.js"></script>
+		<script src="js/vue.js"></script>
+		
+	</head>
+	<body>
+		<div id="time">
+			<!--<span class="hours">16:36</span>
+			<span class="second">55</span>
+			<span class="year">2014-05-05 星期一</span>-->
+		</div>
+		<!--<div class="memo">
+			<div class="top">
+				<span class="add">✚</span>
+				<span class="close">✖</span>
+			</div>
+			<div class="fake" contenteditable="true">添加你的便签</div>
+		</div>-->
+		<!--------------待办事项--------------->
+		<div id="todos">
+			<div class="head">
+				<h3>
+					待办事项
+					<span class="hide">✖</span>
+				</h3>
+				<span 
+					class="checkAll" 
+					:class="{okay:checkAll}" 
+					@click="allCheck" 
+					v-show="list.length&&now==='all'"
+				>❯</span>
+				<input 
+					type="text" 
+					class="inp" 
+					placeholder="添加待办事项" 
+					autofocus="autofocus"
+					@keyup.enter="addTodo"
+					v-model="inner"
+				/>
+			</div>
+			<ul class="content" v-show="list.length">
+				<li v-for="item in list" :class="{checked:item.isChecked,edit:item===editItem}" v-show="now==='all'||item.show">
+					<span class="check" @click="changeCheck(item)" v-show="item!==editItem"><span v-show="item.isChecked">✔</span></span>
+					<span class="text" @dblclick="edit(item)">{{item.content}}<span class="del" @click="deleteList(item)">✖</span></span>
+					<input 
+						type="text"
+						v-model="item.content"
+						v-focus="item===editItem"
+						@blur="finishEdit(item)"
+		      			@keyup.enter="finishEdit(item)"
+		      			@keyup.esc="cancel(item)"
+					/>
+				</li>
+			</ul>
+			<div class="foot" v-show="list.length">
+				<span class="count"><strong>{{unCheckLen}}</strong>条未完成</span>
+				<ul class="type">
+					<li class="all" :class="{choose:now==='all'}" @click="all">全部</li>
+					<li class="active" :class="{choose:now==='active'}" @click="active">未完成</li>
+					<li class="done" :class="{choose:now==='done'}" @click="done">已完成</li>
+				</ul>
+				<span class="clear" v-show="checkLen&&now!=='active'" @click="remove">移除完成的</span>
+			</div>
+		</div>
+		<footer>
+			<div class="dock">
+				<div>
+					<a></a>
+					<span>豆瓣电影</span>
+				</div>
+				<div>
+					<a></a>
+					<span>小说</span>
+				</div>
+				<div>
+					<a></a>
+					<span>音乐</span>
+				</div>
+				<div>
+					<a class="todos"></a>
+					<span>待办事项</span>
+				</div>
+				<div>
+					<a></a>
+					<span>天气</span>
+				</div>
+				<div>
+					<a></a>
+					<span>照片</span>
+				</div>
+				<div>
+					<a></a>
+					<span>设置</span>
+				</div>
+				<div>
+					<a></a>
+					<span>计算器</span>
+				</div>
+				<div>
+					<a class="note"></a>
+					<span>便签</span>
+				</div>
+			</div>
+		</footer>
+		<script src="js/index.js"></script>
+	</body>	
+</html>

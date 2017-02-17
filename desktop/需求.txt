@@ -1,0 +1,9 @@
+进入页面自动进入全屏模式，并提示如何退出
+给Dock栏增加倒影
+响应式布局
+兼容firefox，chrome，IE9及以上
+使用vue编写备忘录
+利用面向对象写便签，使用localstorage本地存储
+vue的watch作用？
+ie9 placeholder 兼容问题
+引入iscroll模块替换原始滚动条
