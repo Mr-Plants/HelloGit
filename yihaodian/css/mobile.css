@@ -1,0 +1,431 @@
+body{
+	margin:0;
+}
+input{
+	-webkit-appearance:none;
+	padding:0;
+}
+a{
+	-webkit-tap-highlight-color:transparent;
+	text-decoration: none;
+}
+.head{
+	width:100%;
+	height:0.78rem;
+	padding-top:0.5rem;
+	background-color: #d42627;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index: 1;
+}
+.foot{
+	width:100%;
+	height:0.97rem;
+	background-color:#fff;
+	border-top:1px solid #b0b0b0;
+	position:fixed;
+	left:0;
+	bottom:0;
+	z-index: 1;
+	display:flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+.head .type{
+	float: left;
+	width:1.0rem;
+	height:0.66rem;
+	background: url(../img/type.jpg) no-repeat 0.35rem 0;
+	background-size: 0.38rem 0.66rem;
+}
+.head .search{
+	float: left;
+	width:5.5rem;
+	height:0.6rem;
+}
+.head .search input{
+	float: left;
+	width:5.5rem;
+	height:0.66rem;
+	background: #fff url(../img/search.jpg) no-repeat 0.11rem 0.14rem;
+	background-size: 0.28rem 0.33rem;
+	border:none;
+	border-radius: 0.07rem;
+}
+.head .message{
+	float: right;
+	width:1.0rem;
+	height:0.66rem;
+	background: url(../img/message.jpg) no-repeat 0.25rem 0;
+	background-size: 0.42rem 0.66rem;
+}
+.content .banner a{
+	float: left;
+	width:100%;
+	height:3.73rem;
+	background: url(../img/mob_banner.jpg) no-repeat;
+	background-size: 100%;
+}
+.content .icon_list{
+	width:100%;
+	height:1.24rem;
+	margin-top:0.16rem;
+	border-bottom: 1px solid #e0e0e0;
+}
+.content .icon_list a{
+	float: left;
+	width:0.72rem;
+	height:1.24rem;
+	margin-right: 1.12rem;
+}
+.content .icon_list .last{
+	margin:0;
+}
+.content .icon_list .first{
+	margin-left:0.63rem;
+}
+.content .icon_list img{
+	width:0.72rem;
+	height:1.24rem;
+}
+.content .hot{
+	width:100%;
+	height:1.01rem;
+	border-bottom: 1px solid #e0e0e0;
+}
+.content .hot h3{
+	float: left;
+	width:1.18rem;
+	height:1.01rem;
+}
+.content .hot h3 a{
+	float: left;
+	width:100%;
+	height:100%;
+	background: url(../img/hot.jpg) no-repeat;
+	background-size: 100%;
+	text-indent:-9999px;
+}
+.content .hot .line{
+	float: left;
+	width:1px;
+	height:0.28rem;
+	background-color:#eaeaea;
+	margin-top:0.37rem;
+}
+.content .hot .hot_info{
+	float: left;
+	width:6.31rem;
+	height:1.01rem;
+	position:relative;
+}
+.content .hot .hot_info .black{
+	float: left;
+	height:0.34rem;
+	font: 0.28rem/0.34rem "microsoft yahei";
+	color:#3c3a3b;
+	position:absolute;
+	left:0.17rem;
+	top:0.19rem;
+}
+.content .hot .hot_info .intro{
+	float: left;
+	height:0.3rem;
+	font: 0.24rem/0.3rem "microsoft yahei";
+	color:#d5282a;
+	position:absolute;
+	left:0.17rem;
+	top:0.53rem;
+}
+.content .hot .hot_info .intro span{
+	float: left;
+	width:0.49rem;
+	height:0.25rem;
+	font: 0.17rem/0.25rem "microsoft yahei";
+	color:#fff;
+	background-color: #d32727;
+	text-align:center;
+	margin:0.04rem 0.08rem 0 0.01rem;
+}
+.content .rub .rub_head{
+	width:100%;
+	height:0.75rem;
+}
+.content .rub .rub_head h3{
+	float: left;
+	width:0.88rem;
+	height:0.5rem;
+	margin:0.2rem 0 0 0.13rem;
+}
+.content .rub .rub_head h3 a{
+	float: left;
+	width:100%;
+	height:100%;
+	background: url(../img/rub.jpg) no-repeat;
+	background-size: 100%;
+	text-indent:-9999px;
+}
+.content .rub .rub_head .last_time{
+	float: right;
+	height:0.38rem;
+	margin:0.19rem 0.2rem 0 0;
+}
+.content .rub .rub_head .last_time span{
+	float: left;
+	width:2.03rem;
+	height:0.38rem;
+	font:0.26rem/0.38rem "microsoft yahei";
+	color:#555;
+}
+.content .rub .rub_head .last_time img{
+	float: left;
+	width:1.5rem;
+	height:0.38rem;
+}
+.content .rub .rub_con{
+	width:100%;
+	height:2.18rem;
+}
+.content .rub .rub_con a{
+	float: left;
+	width:1.72rem;
+	height:2.18rem;
+	margin-right: 0.16rem;
+}
+.content .rub .rub_con a img{
+	float: left;
+	width:100%;
+	height:1.72rem;
+	padding:1px;
+	border:1px solid #ebebeb;
+	box-sizing: border-box;
+}
+.content .rub .rub_con a span{
+	float: left;
+	width:100%;
+	height:0.2rem;
+	font:0.2rem/0.2rem "microsoft yahei";
+	color:#d51210;
+	text-align: center;
+	margin-top:0.15rem;
+}
+.content .rub .rub_con .hid{
+	margin:0;
+}
+.content .new .new_head{
+	height:0.6rem;
+	background-color: #eaeaea;
+}
+.content .new .new_head h3{
+	float: left;
+	width:2.91rem;
+	height:0.6rem;
+	background: url(../img/new.jpg) no-repeat;
+	background-size: 100%;
+	margin-left:2.29rem;
+	text-indent:-9999px;
+}
+.content .new .new_con{
+	width:100%;
+	height:3.15rem;
+	border-bottom: 1px solid #d2d2d2;
+	position: relative;
+}
+.content .new .new_con .new1{
+	float: left;
+	width:2.99rem;
+	height:3.15rem;
+	border-right:1px solid #d2d2d2;
+}
+.content .new .new_con .new2{
+	float: left;
+	width:4.49rem;
+	height:1.38rem;
+	border-right:1px solid #d2d2d2;
+	border-bottom:1px solid #d2d2d2;
+	position:absolute;
+	left:3.0rem;
+	top:0;
+}
+.content .new .new_con .new3{
+	float: left;
+	width:2.24rem;
+	height:1.76rem;
+	border-right:1px solid #d2d2d2;
+	position:absolute;
+	left:3.0rem;
+	top:1.39rem;
+}
+.content .new .new_con img{
+	width:100%;
+	height:100%;
+}
+.content .new .new_con .po{
+	position:absolute;
+	left:5.25rem;
+	top:1.39rem;
+}
+.content .spe .spe_head{
+	width:100%;
+	height:0.6rem;
+	background-color: #eaeaea;
+	border-bottom: 1px solid #e0e0e0;
+}
+.content .spe .spe_head h3{
+	float: left;
+	width:3.2rem;
+	height:0.6rem;
+	background: url(../img/spe.jpg) no-repeat;
+	background-size: 100%;
+	margin-left:2.15rem;
+	text-indent: -9999px;
+}
+.content .spe .spe_con{
+	width:100%;
+	height:3.88rem;
+	border-bottom: 1px solid #e0e0e0;
+	position:relative;
+	padding-bottom: 0.16rem;
+}
+.content .spe .spe_con .spe1{
+	float: left;
+	width:2.5rem;
+	height:3.88rem;
+	border-right: 1px solid #e0e0e0;
+}
+.content .spe .spe_con img{
+	width:100%;
+	height:100%;
+}
+.content .spe .spe_con .spe2{
+	float: left;
+	width:2.49rem;
+	height:1.94rem;
+	border-right: 1px solid #e0e0e0;
+	border-bottom: 1px solid #e0e0e0;
+	position: absolute;
+	left:2.51rem;
+	top:0;
+}
+.content .spe .spe_con .spe3{
+	float: left;
+	width:2.49rem;
+	height:1.94rem;
+	border-bottom: 1px solid #e0e0e0;
+	position: absolute;
+	left:5.01rem;
+	top:0;
+}
+.content .spe .spe_con .spe4{
+	float: left;
+	width:2.49rem;
+	height:1.93rem;
+	border-bottom: 1px solid #e0e0e0;
+	border-right: 1px solid #e0e0e0;
+	position: absolute;
+	left:2.51rem;
+	top:1.95rem;
+}
+.content .spe .spe_con .spe5{
+	float: left;
+	width:2.49rem;
+	height:1.93rem;
+	border-bottom: 1px solid #e0e0e0;
+	position: absolute;
+	left:5.01rem;
+	top:1.95rem;
+}
+.content .shop_list .list_head{
+	width:100%;
+	height:1.05rem;
+	border-bottom: 1px solid #e7e7e7;
+	margin-bottom: 0.09rem;
+}
+.content .shop_list .list_head img{
+	width:100%;
+	height:100%;
+}
+.content .shop_list .list_head a{
+	float: left;
+	width:1.47rem;
+	height:1.05rem;
+	border-right: 1px solid #e7e7e7;
+}
+.content .shop_list .list_con a{
+	float: left;
+	width:3.59rem;
+	height:4.92rem;
+	border: 1px solid #d2d2d2;
+	border-radius: 0.06rem;
+	margin-bottom: 0.09rem;
+	margin-left: 0.09rem;
+	position:relative;
+}
+.content .shop_list .list_con a img{
+	width:3.59rem;
+	height:3.59rem;
+}
+.content .shop_list .list_con a .shop_name{
+	float: left;
+	width:3.3rem;
+	height:0.26rem;
+	font:bold 0.26rem/0.26rem "microsoft yahei";
+	color:#000;
+	position:absolute;
+	left:0.09rem;
+	top:3.67rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.content .shop_list .list_con a .buyle{
+	float: left;
+	height:0.2rem;
+	font: 0.2rem/0.2rem "microsoft yahei";
+	color:#aaa;
+	position:absolute;
+	left:0.09rem;
+	bottom:0.61rem;
+}
+.content .shop_list .list_con a .price{
+	float: left;
+	height:0.24rem;
+	font: 0.24rem/0.24rem "microsoft yahei";
+	color:#d42828;
+	position:absolute;
+	left:0.09rem;
+	bottom:0.2rem;
+}
+.content .shop_list .list_con a .tip{
+	float: left;
+	width:0.84rem
+	height:0.28rem;
+	border:1px solid #f5aeb6;
+	font: 0.2rem/0.28rem "microsoft yahei";
+	text-align: center;
+	color:#d42828;
+	position:absolute;
+	left:0.78rem;
+	bottom:0.18rem;
+}
+.content .shop_list .list_con a .go{
+	float: left;
+	width:0.66rem;
+	height:0.66rem;
+	background: url(../img/go.jpg) no-repeat;
+	background-size: 100%;
+	position:absolute;
+	right:0.17rem;
+	bottom:0.16rem;
+}
+.foot a{
+	float: left;
+	width:0.58rem;
+	height:0.83rem;
+	margin-top:0.14rem;
+}
+.foot img{
+	width:100%;
+	height:100%;
+}

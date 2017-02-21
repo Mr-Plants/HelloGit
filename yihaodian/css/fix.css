@@ -1,0 +1,53 @@
+.clearfix{
+	zoom:1;
+}
+.head_top .shop .tran{
+	overflow: hidden;
+}
+.head_top .shop .shop_car .handcar{
+	overflow: hidden;
+}
+.top_bar .inside{
+	overflow: hidden;
+}
+.inside .bar_right .push{
+	overflow: hidden;
+}
+.inside .bar_right .line{
+	overflow: hidden;
+}
+.head .head_bottom .list_head .pull{
+	margin-top:-12px;
+	overflow: hidden;
+}
+.head .head_bottom .bo_right .ad{
+	overflow: hidden;
+}
+.head_top .shop_car .shad{
+	overflow: hidden;
+}
+.banner .banner_con .shop_type .top_color{
+	overflow: hidden;
+}
+.banner_con .quick_shop .promotion{
+	overflow: hidden;
+}
+.quick_shop .recharge .top_button{
+	overflow: hidden;
+}
+.content .center .floor1 .team .title{
+	display: inline;
+}
+.content .center .floor1 .super .title{
+	display: inline;
+}
+.center .shop_modules .modu_con .row1{
+	overflow: hidden;
+}
+.content .center .gg .head .link .yellow .icon_a{
+	display: inline;
+	overflow: hidden;
+}
+.finish .foot_con .deserve span{
+	margin-bottom: 2px;
+}

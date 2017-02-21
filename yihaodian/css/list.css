@@ -1,0 +1,547 @@
+.banner{
+	height:582px;
+	background: url(../img/list_banner.jpg) no-repeat center;
+}
+.content{
+	background-color: #1e243c;
+}
+.content .inside{
+	width:985px;
+	margin:0 auto;
+	padding-top:28px;
+}
+.content .inside .f1 .f1_head{
+	height:68px;	
+}
+.content .inside .f1 .f1_head h3{
+	font:bold 58px/68px "microsoft yahei";
+	color:#fff;
+	text-align: center;
+}
+.content .inside .f1 .f1_con{
+	width:983px;
+	height:385px;
+	border:1px solid #adadad;
+	border-bottom-width: 2px;
+	margin-top:5px;
+}
+.content .inside .f1 .f1_con li{
+	float: left;
+	width:235px;
+	height:367px;
+	border-right:1px solid #e9e9e9;
+	padding:18px 5px 0 5px;
+	background-color: #fff;
+}
+.content .inside .f1 .f1_con li .clock{
+	float: left;
+	width:235px;
+	height:27px;
+	border-bottom:1px dotted #000;
+	background: url(../img/f11.jpg) no-repeat;
+}
+.content .inside .f1 .f1_con .nobo{
+	border:none;
+}
+.content .inside .f1 .f1_con li .pic{
+	float: left;
+	width:235px;
+	height:210px;
+}
+.content .inside .f1 .f1_con li .info{
+	float: left;
+	height:36px;
+	font:12px/18px "microsoft yahei";
+	color:#000;
+}
+.content .inside .f1 .f1_con li .price{
+	float: left;
+	height:44px;
+	font:14px/44px "microsoft yahei";
+	color:#f32434;
+}
+.content .inside .f1 .f1_con li .price .new{
+	font-size:18px;
+	font-weight: bold;
+}
+.content .inside .f1 .f1_con li .price .old{
+	font-size:12px;
+	color:#666;
+	text-decoration: line-through;
+}
+.content .inside .f1 .f1_con li .buy{
+	float: left;
+	width:178px;
+	height:32px;
+	margin-left:28px;
+}
+.content .inside .aurs{
+	margin-top:8px;
+}
+.content .inside .aurs .f2 .f2_head{
+	height:166px;	
+	margin-bottom: 21px;
+	padding-left:255px;
+}
+.content .inside .aurs .f2 .f2_head h3{
+	float: left;
+	width:469px;
+	height:166px;
+	text-indent: -9999px;
+	background: url(../img/f21.jpg) no-repeat;
+}
+.content .inside .aurs .f2 .f2_con li{
+	float: left;
+	width:240px;
+	height:350px;
+	background-color:#fff;
+	margin:0 6px 13px 0;
+}
+.content .inside .aurs .f2 .f2_con li .pic{
+	float: left;
+	width:240px;
+	height:251px;
+}
+.content .inside .aurs .f2 .f2_con li .info{
+	float: left;
+	width:220px;
+	height:32px;
+	font:12px/16px "microsoft yahei";
+	color:#504f4f;
+	padding:0 10px;
+}
+.content .inside .aurs .f2 .f2_con li .lier{
+	float: left;
+	width:220px;
+	height:61px;
+	padding:6px 10px 0 10px;
+}
+.content .inside .aurs .f2 .f2_con li .lier .fl{
+	width:150px;
+	height:60px;
+}
+.content .inside .aurs .f2 .f2_con li .lier .price{
+	float: left;
+	height:20px;
+	font:12px/20px "microsoft yahei";
+	color:#de1414;
+	margin-top:17px;
+}
+.content .inside .aurs .f2 .f2_con li .lier .num{
+	float: left;
+	height:26px;
+	font:bold 24px/26px "microsoft yahei";
+	color:#de1414;
+	margin-top:11px;
+	width:90px;
+}
+.content .inside .aurs .f2 .f2_con li .lier .old{
+	float: left;
+	height:18px;
+	font:12px/18px "microsoft yahei";
+	color:#686868;
+}
+.content .inside .aurs .f2 .f2_con li .lier .buy{
+	float: left;
+	width:40px;
+	height:49px;
+	font:bold 18px/20px "microsoft yahei";
+	color:#fff;
+	background-color: #ff0000;
+	text-align: center;
+	padding:11px 10px 0 10px;
+}
+.content .inside .aurs .medicial .f2_head{
+	height:58px;	
+	margin-bottom: 21px;
+	padding-left:255px;
+	margin-top:20px;
+}
+.content .inside .aurs .medicial .f2_head h4{
+	float: left;
+	width:469px;
+	height:58px;
+	text-indent: -9999px;
+	background: url(../img/medicial.jpg) no-repeat;
+}
+.content .inside .aurs .beauty .f2_head h4{
+	background: url(../img/buauty.jpg) no-repeat;
+}
+.content .inside .jap{
+	margin-top:24px;
+}
+.content .inside .jap .fo1 .fo1_head{
+	height:137px;	
+	margin-bottom:11px;
+	padding-left:255px;
+}
+.content .inside .jap .fo1 .fo1_head h3{
+	float: left;
+	width:482px;
+	height:137px;
+	text-indent: -9999px;
+	background: url(../img/jap.jpg) no-repeat;
+}
+.content .inside .jap .fo1 .fo1_con li{
+	float: left;
+	width:300px;
+	height:292px;
+	background-color:#fff;
+	border:1px solid #cecece;
+	margin:0 6px 6px 0;
+	padding:8px 10px 0 10px;
+}
+.content .inside .jap .fo1 .fo1_con li .pic{
+	float: left;
+	width:300px;
+	height:200px;
+	margin-bottom: 6px;
+}
+.content .inside .jap .fo1 .fo1_con li .dis{
+	float: left;
+	width:300px;
+	height:44px;
+	font:16px/22px "microsoft yahei";
+	color:#353535;
+}
+.content .inside .jap .fo1 .fo1_con li .price{
+	float: left;
+	width:300px;
+	height:42px;
+	position: relative;
+}
+.content .inside .jap .fo1 .fo1_con li .price .new{
+	float: left;
+	width:100px;
+	height:38px;
+	font:bold 26px/38px "microsoft yahei";
+	color:#e72324;
+	margin-top:4px;
+}
+.content .inside .jap .fo1 .fo1_con li .price .new span{
+	font:16px/38px "microsoft yahei";
+}
+.content .inside .jap .fo1 .fo1_con li .price .old{
+	float: left;
+	height:18px;
+	font:14px/18px "microsoft yahei";
+	color:#353535;
+	position: absolute;
+	top:24px;
+	left:100px;
+}
+.content .inside .jap .fo1 .fo1_con li .price .old span{
+	text-decoration: line-through;
+}
+.content .inside .jap .fo1 .fo1_con li .price .zhekou{
+	float: left;
+	width:49px;
+	height:14px;
+	font:14px/14px "microsoft yahei";
+	color:#e72324;
+	background: url(../img/biaoqian.jpg) no-repeat;
+	text-indent: 10px;
+	padding-top:3px;
+	margin-top:7px;
+}
+.content .inside .jap .fo1 .fo1_con li .price .zz{
+	float: right;
+	height:32px;
+	font:14px/32px "microsoft yahei";
+	color:#353535;
+	margin-top:10px;
+}
+.content .inside .jap .fo1 .fo1_con li .price .zz span{
+	font:16px/32px "microsoft yahei";
+	color:#e72324;
+}
+.content .inside .jap .se{
+	margin-top:16px;
+}
+.content .inside .jap .se .fo1_head{
+	height:58px;	
+	margin-bottom:17px;
+	padding-left:228px;
+}
+.content .inside .jap .se .fo1_head h4{
+	float: left;
+	width:527px;
+	height:58px;
+	text-indent: -9999px;
+	background: url(../img/se.jpg) no-repeat;
+}
+.content .inside .eur{
+	margin-top:3px;
+}
+.content .inside .eur .one .one_head{
+	height:204px;	
+	margin-bottom:21px;
+	padding-left:245px;
+}
+.content .inside .eur .one .one_head h3{
+	float: left;
+	width:486px;
+	height:204px;
+	text-indent: -9999px;
+	background: url(../img/eur.jpg) no-repeat;
+}
+.content .inside .eur .one .one_con li{
+	float: left;
+	width:210px;
+	height:374px;	
+	margin:0 0 10px 20px;
+	background-color: #fff;
+	padding:0 5px;
+	position:relative;
+}
+.content .inside .eur .one .one_con li .pic{
+	float: left;
+	width:210px;
+	height:215px;	
+}
+.content .inside .eur .one .one_con li .dis{
+	float: left;
+	width:210px;
+	height:40px;	
+	font:12px/20px "microsoft yahei";
+	color:#000;
+}
+.content .inside .eur .one .one_con li .new{
+	float: left;
+	width:210px;
+	height:20px;	
+	font:bold 12px/20px "microsoft yahei";
+	color:#000;
+	margin-top:9px;
+}
+.content .inside .eur .one .one_con li .old{
+	float: left;
+	width:210px;
+	height:20px;	
+	font:12px/20px "microsoft yahei";
+	color:#000;
+}
+.content .inside .eur .one .one_con li .hot{
+	float: left;
+	width:210px;
+	height:20px;	
+	font:12px/20px "microsoft yahei";
+	color:#cc0000;
+	text-decoration:underline;
+}
+.content .inside .eur .one .one_con li .link{
+	float: left;
+	width:124px;
+	height:30px;	
+	background: url(../img/eura.jpg) no-repeat;
+	position:absolute;
+	left:45px;
+	bottom:8px;
+}
+.content .inside .eur .two{
+	margin-top:16px;
+}
+.content .inside .eur .two .one_head{
+	height:60px;	
+	margin-bottom:25px;
+	padding-left:241px;
+}
+.content .inside .eur .one .one_head h4{
+	float: left;
+	width:490px;
+	height:60px;
+	text-indent: -9999px;
+	background: url(../img/two.jpg) no-repeat;
+}
+.content .inside .usa{
+	margin-top:5px;
+}
+.content .inside .usa .one .one_head{
+	height:214px;	
+	margin-bottom:20px;
+	padding-left:264px;
+}
+.content .inside .usa .one .one_head h3{
+	float: left;
+	width:455px;
+	height:214px;
+	text-indent: -9999px;
+	background: url(../img/usa.jpg) no-repeat;
+}
+.content .inside .usa .two{
+	margin-top:16px;
+}
+.content .inside .usa .two .one_head{
+	height:60px;	
+	margin-bottom:17px;
+	padding-left:241px;
+}
+.content .inside .usa .two .one_head h4{
+	float: left;
+	width:491px;
+	height:60px;
+	text-indent: -9999px;
+	background: url(../img/usa2.jpg) no-repeat;
+}
+.content .inside .self{
+	margin-top:13px;
+}
+.content .inside .self .one .one_head{
+	height:58px;	
+	margin-bottom:22px;
+	padding-left:296px;
+}
+.content .inside .self .one .one_head h3{
+	float: left;
+	width:424px;
+	height:58px;
+	text-indent: -9999px;
+	background: url(../img/self.jpg) no-repeat;
+}
+.content .inside .glo .glo_head{
+	height:59px;	
+	margin-bottom:22px;
+	padding-left:298px;
+}
+.content .inside .glo{
+	margin-top:15px;
+}
+.content .inside .glo .glo_head h3{
+	float: left;
+	width:394px;
+	height:59px;
+	text-indent: -9999px;
+	background: url(../img/glo.jpg) no-repeat;
+}
+.content .inside .glo .glo_con a{
+	float: left;
+	width: 320px;
+	height: 360px;
+	margin-right:10px;
+}
+.content .inside .glo .glo_con .last{
+	margin: 0;
+}
+.content .inside .gou{
+	margin-top:26px;
+}
+.content .inside .gou .glo_head{
+	height:59px;	
+	margin-bottom:22px;
+	padding-left:339px;
+}
+.content .inside .gou .glo_head h3{
+	float: left;
+	width:323px;
+	height:59px;
+	text-indent: -9999px;
+	background: url(../img/buy.jpg) no-repeat;
+}
+.content .inside .gou .glo_con a{
+	float: left;
+	width: 238px;
+	height: 310px;
+	margin:0 9px 20px 0;
+}
+.content .inside .gou .glo_con .last{
+	margin-right: 0;
+}
+.content .inside .coun{
+	margin-top:3px;
+}
+.content .inside .coun .glo_head{
+	height:64px;	
+	margin-bottom:6px;
+	padding-left:266px;
+}
+.content .inside .coun .glo_head h3{
+	float: left;
+	width:493px;
+	height:64px;
+	text-indent: -9999px;
+	background: url(../img/coun.jpg) no-repeat;
+}
+.content .inside .coun .glo_con a{
+	float: left;
+	width: 470px;
+	height: 360px;
+	margin:0 40px 10px 0;
+}
+.content .inside .coun .glo_con .last{
+	margin-right: 0;
+}
+.content .inside .giver{
+	margin-top:3px;
+}
+.content .inside .giver .glo_head{
+	height:62px;	
+	margin-bottom:18px;
+	padding-left:310px;
+}
+.content .inside .giver .glo_head h3{
+	float: left;
+	width:388px;
+	height:62px;
+	text-indent: -9999px;
+	background: url(../img/giver.jpg) no-repeat;
+}
+.content .inside .giver .glo_con .bingo{
+	float: left;
+	width: 238px;
+	height: 310px;
+	background-color: #fff;
+	margin:0 8px 10px 0;
+	position: relative;
+}
+.content .inside .giver .glo_con a .reduce{
+	float: left;
+	height: 22px;
+	font:bold 22px/22px "microsoft yahei";
+	color:#fa471f;
+	position:absolute;
+	left:14px;
+	bottom:39px;
+}
+.content .inside .giver .glo_con a .name{
+	float: left;
+	height: 20px;
+	font:12px/20px "microsoft yahei";
+	color:#999;
+	position:absolute;
+	left:14px;
+	bottom:17px;
+}
+.content .inside .giver .glo_con a .goin{
+	float: left;
+	width:44px;
+	height: 46px;
+	border:1px solid #d5524a;
+	border-radius: 3px;
+	background-color: #f1331b;
+	font:bold 16px/18px "microsoft yahei";
+	color:#fff;
+	padding:8px 0 0 10px;
+	position:absolute;
+	right:11px;
+	bottom:10px;
+}
+.content .inside .text{
+	margin-top:10px;
+}
+.content .inside .text span{
+	float: left;
+	width:985px;
+	height:34px;
+	font:12px/34px "microsoft yahei";
+	color:#fff;
+	text-indent:10px;
+	_display:inline
+}
+.content .inside .text a{
+	float: left;
+	height:34px;
+	font:12px/34px "microsoft yahei";
+	color:#fff;
+	text-indent:10px;
+}
+
