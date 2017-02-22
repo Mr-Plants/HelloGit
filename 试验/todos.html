@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="vue.js"></script>
+		<style>
+			body{
+				background:#DCDCDC;
+				margin: 0;
+			}
+			ul{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			::-webkit-input-placeholder{
+				font-style:italic;
+				color:#DCDCDC;
+			}
+			#todos{
+				width: 500px;
+				position: absolute;
+				left: 500px;
+				top: 200px;
+				border-radius: 5px;
+				background: #fff;
+				cursor: default;
+				box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(0, 0, 0, 0.4);	
+			}
+			#todos .head{
+				border-bottom: 1px solid gainsboro;
+				height: 100px;
+				position: relative;
+			}
+			#todos .head h3{
+				width: 100%;
+				font-size: 28px;
+				line-height: 1.8;
+				margin: 0;
+				text-align: center;
+				font-family: "微软雅黑";
+				color:#333;
+				background: lightcoral;
+				font-weight: normal;
+				position: absolute;
+				left: 0;
+				top: 0;
+				border-radius: 5px 5px 0 0;
+			}
+			#todos .head .inp{
+				position: absolute;
+				top: 55px;
+				left: 70px;
+				width: 400px;
+				height: 40px;
+				font:22px/40px "微软雅黑";
+				border:none;
+				outline: none;
+			} 
+			#todos .head .checkAll{
+				position: absolute;
+				top: 65px;
+				left: 15px;
+				width: 26px;
+				height: 26px;
+				font:24px/26px arial;
+				color:#ccc;
+				text-align: center;
+				transform: rotate(90deg);
+			}
+			#todos .head .okay{
+				color:#000;
+			} 
+			::-ms-clear{
+				display: none;
+			}
+			#todos .content li{
+				position: relative;
+				border-bottom:1px solid gainsboro;
+			}
+			#todos .content li:hover .del{
+				display: block;
+			}
+			#todos .content li .check{
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 15px;
+				width: 30px;
+				height: 30px;
+				font:24px/30px arial;
+				border:1px solid gainsboro;
+				border-radius: 50%;
+				text-align: center;
+				color:#1ABC9C;
+				margin: auto 0;
+			}
+			#todos .content li .del{
+				position: absolute;
+				right: 20px;
+				top: 0;
+				bottom: 0;
+				width: 28px;
+				height: 28px;
+				color:brown;
+				font-size: 28px;
+				line-height: 1.2;
+				text-align: center;
+				margin: auto 0;
+				opacity: 0.3;
+				display: none;
+			}
+			#todos .content li .del:hover{
+				opacity: 1;
+			}
+			#todos .content li .text{
+				white-space: pre-line;
+    			word-break: break-all;
+    			display: block;
+				margin-left: 60px;
+				font-size:20px;
+				line-height: 1.2;
+				color:#212121;
+				transition: color 0.4s;
+				padding: 16px 60px 20px 15px;
+				position: relative;
+			}
+			#todos .content li .date{
+				position: absolute;
+				left: 75px;
+				bottom: 3px;
+				font:12px/12px "微软雅黑";
+				color:#ccc;
+			}
+			#todos .content li input{
+				width: 360px;
+				font-size: 20px;
+				line-height: 1.4;
+				color:#212121;
+				outline: none;
+				border:1px dashed #ccc;
+				padding: 15px;
+				display: none;
+				margin-left: 60px;
+				box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(0, 0, 0, 0.2);	
+			}
+			#todos .content .checked .text{
+				text-decoration: line-through;
+				color:#d9d9d9;
+			}
+			#todos .content .edit input{
+				display: block;
+			}
+			#todos .content .edit .text{
+				display: none;
+			}
+			#todos .foot{
+				width: 100%;
+				height: 40px;
+				color:#777;
+			}
+			#todos .foot .count{
+				float: left;
+				font:14px/40px "微软雅黑";
+				margin:0 15px;	
+			}
+			#todos .foot .type{
+				float: left;
+				height: 100%;
+				margin-left: 65px;
+			}
+			#todos .foot .type li{
+				float: left;
+				height: 24px;
+				padding:0 6px;
+				font:14px/24px "微软雅黑";
+				margin-right: 15px;
+				margin-top: 8px;
+				
+				border-radius: 3px;
+			}
+			#todos .foot .type .choose{
+				border:1px solid burlywood;
+			}
+			#todos .foot .clear{
+				float: left;
+				font:14px/40px "微软雅黑";
+				margin-left: 60px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="todos">
+			<div class="head">
+				<h3>待办事项</h3>
+				<span class="checkAll" :class="{okay:checkAll}" @click="allCheck" v-show="list.length&&now==='all'">❯</span>
+				<input 
+					type="text" 
+					class="inp" 
+					placeholder="添加待办事项" 
+					autofocus="autofocus"
+					@keyup.enter="addTodo"
+					v-model="inner"
+				/>
+			</div>
+			<ul class="content" v-show="list.length">
+				<li v-for="item in list" :class="{checked:item.isChecked,edit:item===editItem}" v-show="now==='all'||item.show">
+					<span class="check" @click="changeCheck(item)" v-show="item!==editItem"><span v-show="item.isChecked">✔</span></span>
+					<span class="text" @dblclick="edit(item)">{{item.content}}<span class="del" @click="deleteList(item)">✖</span></span>
+					<span class="date" v-show="item!==editItem">创建于{{item.Date}}</span>
+					<input 
+						type="text"
+						v-model="item.content"
+						v-focus="item===editItem"
+						@blur="finishEdit(item)"
+		      			@keyup.enter="finishEdit(item)"
+		      			@keyup.esc="cancel(item)"
+					/>
+				</li>
+			</ul>
+			<div class="foot" v-show="list.length">
+				<span class="count"><strong>{{unCheckLen}}</strong>条未完成</span>
+				<ul class="type">
+					<li class="all" :class="{choose:now==='all'}" @click="all">全部</li>
+					<li class="active" :class="{choose:now==='active'}" @click="active">未完成</li>
+					<li class="done" :class="{choose:now==='done'}" @click="done">已完成</li>
+				</ul>
+				<span class="clear" v-show="checkLen&&now!=='active'" @click="remove">移除完成的</span>
+			</div>
+		</div>
+		<script>
+			var list;
+			var todoData=localStorage.getItem("todo");
+			if(todoData){
+				list=JSON.parse(todoData);
+			}else{
+				list=[
+					{
+						content:"吃饭睡觉打豆豆",
+						isChecked:false,
+						show:true,
+						Date:"2017-01-15"
+					},
+					{
+						content:"吃饭打豆豆",
+						isChecked:true,
+						show:true,
+						Date:"2017-01-03"
+					}
+				]
+			}
+			
+			new Vue({
+				el:"#todos",
+				data:{
+					list:list,
+					checkAll:false,
+					inner:"",
+					editItem:"",
+					origCont:"",
+					now:"all"
+				},
+				methods:{
+					changeCheck:function(item){
+						item.isChecked=!item.isChecked;
+						item.show=this.now==='active'?!item.isChecked:item.isChecked;
+						this.checkAll=this.list.every(function(item){
+							return item.isChecked;
+						})
+					},
+					deleteList:function(item){
+						var index=this.list.indexOf(item);
+						this.list.splice(index,1);
+						this.checkAll=this.list.every(function(item){
+							return item.isChecked;
+						})
+					},
+					allCheck:function(){
+						var onoff=this.checkAll=!this.checkAll;
+						this.list.forEach(function(item){
+							item.isChecked=onoff;
+						})
+					},
+					addTodo:function(){
+						var show=this.now==="done"?false:true;
+						if(this.inner.trim()){
+							this.list.push({
+								content:this.inner,
+								isChecked:false,
+								show:show
+							})
+							this.inner="";
+							this.checkAll=false;
+						}
+					},
+					edit:function(item){
+						this.editItem=item;
+						this.origCont=item.content;
+					},
+					finishEdit:function(item){
+						if(item.content.trim()===""){
+							this.deleteList(item);
+						}
+						this.editItem="";
+					},
+					cancel:function(item){
+						item.content=this.origCont;
+						this.editItem="";
+						this.origCont="";
+					},
+					remove:function(){
+						this.list=this.list.filter(function(item){
+							return !item.isChecked;
+						})
+					},
+					active:function(){
+						this.now="active";
+						this.list.forEach(function(item){
+							if(item.isChecked){
+								item.show=false;
+							}else{
+								item.show=true;
+							}
+						})
+					},
+					all:function(){
+						this.now="all";
+					},
+					done:function(){
+						this.now="done";
+						this.list.forEach(function(item){
+							if(item.isChecked){
+								item.show=true;
+							}else{
+								item.show=false;
+							}
+						})
+					}
+				},
+				computed:{
+					unCheckLen:function(){
+						var checkArr=this.list.filter(function(item){
+							return !item.isChecked
+						})
+						return checkArr.length;
+					},
+					checkLen:function(){
+						return this.list.length-this.unCheckLen;
+					}
+				},
+				directives:{ //自定义指令
+					focus:{
+						update:function(el,binding){
+							if(binding.value){
+								el.focus();
+							}
+						}
+					}
+				},
+				watch:{
+					list:{
+						handler:function (){
+							localStorage.setItem("todo",JSON.stringify(this.list));	
+						},
+						deep:true
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
