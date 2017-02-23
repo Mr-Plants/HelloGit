@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="js/jq3.js"></script>
+		<script src="js/tools.js"></script>
+		<style>
+			@keyframes move{
+				0%{
+					transform: rotate(0deg);
+				}
+				100%{
+					transform: rotate(360deg);
+				}
+			}
+			body{
+				margin: 0;
+				/*background:seashell;*/
+				cursor: default;
+			}
+			
+			#music{
+				width: 800px;
+				height: 500px;
+				background: #fff;
+				position: relative;
+				left: 200px;
+				top: 100px;
+				border-radius:5px;
+				box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(0, 0, 0, 0.6);
+			}
+			#music header{
+				width: 100%;
+				height: 50px;
+				position: absolute;
+				left: 0;
+				top: 0;
+				background:indianred;
+				border-radius: 5px 5px 0 0;
+			}
+			#music header h1{
+				position: absolute;
+				left: 20px;
+				top: 10px;
+				margin: 0;
+				color:#fff;
+				font:20px/1.4 "微软雅黑";
+			}
+			#music header input{
+				position: absolute;
+				left: 320px;
+				top: 15px;
+				width: 160px;
+				height: 20px;
+				border: 0;
+				padding: 0;
+				border-radius: 3px;
+				outline: none;
+				background: seashell;
+				font:12px/1.2 "微软雅黑";
+				text-indent: 5px;
+			}
+			#music header .buttons{
+				position: absolute;
+				right: 20px;
+				top: 10px;
+			}
+			/*----------footer----------*/
+			#music footer{
+				width: 100%;
+				height: 50px;
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				background: #f6f6f8;
+				border-radius: 0 0 5px 5px;
+				border-top:1px solid #ccc;
+			}
+			#music footer .control{
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				margin-left: 10px;
+			}
+			#music footer .control span{
+				float: left;
+				width: 26px;
+				height: 26px;
+				margin: 12px 6px;
+				background: url(img/prev.jpg) no-repeat;
+				background-size: 100%;
+			}
+			#music footer .control .next{
+				background: url(img/next.jpg) no-repeat;
+				background-size: 100%;
+			}
+			#music footer .control .play{
+				width: 30px;
+				height: 30px;
+				margin-top: 10px;
+				background: url(img/play.jpg) no-repeat;
+				background-size: 100%;
+			}
+			#music footer .progBar{
+				width: 430px;
+				height: 100%;
+				position: absolute;
+				left: 145px;
+				top: 0;
+			}
+			#music footer .progBar span{
+				position: absolute;
+				left: 0;
+				top: 18px;
+				font:12px/1.2 arial;
+				color:#777;
+				
+			}
+			#music footer .progBar .all{
+				left: 442px;
+			}
+			#music footer .progBar .bar{
+				position: absolute;
+				left: 35px;
+				top: 24px;
+				width: 400px;
+				height: 3px;
+				background: #999;
+				border-radius: 1px;	
+			}
+			#music footer .progBar .bar .run{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 0;
+				height: 3px;
+				background: red;
+			}
+			#music footer .progBar .bar .cirBut{
+				position: absolute;
+				left: -5px;
+				top: -5px;
+				width: 10px;
+				height: 10px;
+				color:indianred;
+				cursor:pointer;
+			}
+			#music footer .volum{
+				width:150px;
+				height: 100%;
+				position: absolute;
+				right:18px;
+				top: 0;
+			}
+			#music footer .volum .icon{
+				position: absolute;
+				left: 0;
+				top: 18px;
+				width: 14px;
+				height: 14px;
+				background: url(img/voice.png) no-repeat;
+				background-size: 100%;
+				cursor:pointer;
+			}
+			#music footer .volum .volProgbar{
+				position: absolute;
+				left:25px;
+				top: 24px;
+				width: 100px;
+				height: 3px;
+				background: #999;
+				border-radius: 1px;	
+			}
+			#music footer .volum .volProgbar:hover .voiBut{
+				display: block;
+			}
+			#music footer .volum .volProgbar .curVoice{
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 80px;
+				height: 3px;
+				background: red;
+			}
+			#music footer .volum .volProgbar .voiBut{
+				position: absolute;
+				left: 75px;
+				top: -7px;
+				width: 10px;
+				height: 10px;
+				color:indianred;
+				cursor:pointer;
+				font-size: 12px;
+				text-align: center;
+				display: none;
+			}
+			#music footer .volum .loop{
+				position: absolute;
+				right: 0;
+				top: 14px;
+			}
+			/*----------content--------*/
+			#music .content{
+				width: 100%;
+				height: 400px;
+				position: absolute;
+				left: 0;
+				top: 50px;
+			}
+			#music .content .list{
+				width: 160px;
+				height: 100%;
+				position: absolute;
+				left: 0;
+				top: 0;
+				border-right: 1px solid #ccc;
+			}
+			#music .content .list .title{
+				width: 100%;
+				height: 26px;
+				background:rgba(0,0,0,0.2);
+				font:14px/26px "微软雅黑";
+				text-align: center;
+			}
+			#music .content .list .song{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				width: 100%;
+			}
+			#music .content .list .song li{
+				height: 24px;
+				text-indent: 10px;
+				font:12px/24px "微软雅黑";
+				color:#777;
+			}
+			#music .content .list .song li:hover{
+				background:rgba(0,0,0,0.1);
+			}
+			#music .content .list .song .active{
+				background:rgba(0,0,0,0.1);
+			}
+			#music .content .zone{
+				width: 640px;
+				height: 100%;
+				position: absolute;
+				left: 160px;
+				top: 0;
+				background: rgba(0,0,0,0.02);
+			}
+			#music .content .zone .disk{
+				height: 100%;
+			}
+			#music .content .zone .disk .diskpic{
+				position: absolute;
+				left: 75px;
+				top: 80px;
+				width: 260px;
+				height: 260px;
+				background: url(img/diskpic.png) no-repeat;
+				background-size: 100%;
+				animation: move 8s linear infinite;
+				animation-play-state: paused;
+			}
+			#music .content .zone .disk .headpic{
+				position: absolute;
+				left: 120px;
+				top: 0;
+				width: 105px;
+				height: 215px;
+				background: url(img/headpic.png) no-repeat;
+				background-size: 100%;
+				transform: rotate(-80deg);
+				transform-origin: 88px 23px;
+				transition: 0.5s;
+			}
+			/*-------搜索结果------*/
+			.zone .songlist{
+				height: 100%;
+				position: relative;
+				display: none;
+			}
+			.zone .songlist .head{
+				height: 20px;
+				padding-top: 10px;
+			}
+			.zone .songlist .tipsCount{
+				height: 20px;
+				text-align: center;
+				font:14px/20px "微软雅黑";
+				color:#666;
+				margin-top: 10px;
+			}
+			.zone .songlist .head span{
+				float: left;
+				width: 128px;
+				text-align: center;
+				font:16px/20px "微软雅黑";
+				color:#666;
+			}
+			.zone .songlist .close{
+				width: 16px;
+				height: 16px;
+				position: absolute;
+				right: 10px;
+				top: 8px;
+			}
+			.zone .songInfo{
+				padding: 0;
+				margin: 0;
+				margin-top: 10px;
+				list-style: none;
+			}
+			.zone .songInfo li{
+				height: 28px;
+				margin-bottom: 2px;
+			}
+			.zone .songInfo li:hover{
+				background: rgba(0,0,0,0.1);
+			}
+			.zone .songInfo li span{
+				float: left;
+				width: 128px;
+				text-align: center;
+				font:12px/28px "微软雅黑";
+				color:#666;
+				white-space: nowrap;  
+				text-overflow:ellipsis; 
+				overflow:hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="music">
+			<header>
+				<h1>海鸥音乐</h1>
+				<input type="text" placeholder="搜索音乐" id="search"/>
+				<div class="buttons">
+					<span class="hide">➖</span>
+					<span class="close">✖</span>
+				</div>
+			</header>
+			<div class="content">
+				<div class="list">
+					<div class="title">默认列表[<strong>5</strong>]</div>
+					<ul class="song">
+						<li>来生</li>
+						<li>海阔天空</li>
+						<li>牵丝线</li>
+						<li>你飞到城市另一边</li>
+						<li>送你一朵山茶花</li>
+					</ul>
+				</div>
+				<div class="zone">
+					<div class="disk">
+						<span class="diskpic"></span>
+						<span class="headpic"></span>
+					</div>
+					<div class="songlist">
+						<span class="close">✖</span>
+						<div class="head">
+							<span>歌手</span>
+							<span>歌曲名</span>
+							<span>专辑</span>
+							<span>时间</span>
+							<span>品质</span>
+						</div>
+						<div class="tipsCount">网络连接有问题哦...</div>
+						<ul class="songInfo"></ul>
+					</div>
+				</div>
+			</div>
+			<footer>
+				<div class="control">
+					<span class="prev"></span>
+					<span class="play"></span>
+					<span class="next"></span>
+				</div>
+				<div class="progBar">
+					<span class="now">00:00</span>
+					<div class="bar">
+						<span class="run"></span>
+						<span class="cirBut">◉</span>
+					</div>
+					<span class="all">00:00</span>
+				</div>
+				<div class="volum">
+					<span class="icon"></span>
+					<span class="volProgbar">
+						<span class="curVoice"></span>
+						<span class="voiBut">◉</span>
+					</span>
+					<span class="loop">🔂</span>
+				</div>
+			</footer>
+		</div>
+		<!--🔀🔂🔁◼‖-->
+		<audio id="player" src="music/来生.mp3">请升级浏览器</audio>
+		<script>
+			
+			var timer=null,
+				now=null,
+				nowPlayId=0,  //记录正在播放的歌曲id
+				loopState="loop",
+				loopCode=0,
+				loopArr=["loop","order","random"],
+				loopIconArr=["🔂","🔁","🔀"],
+				playlist=[],
+				musicJs=null, //用来接收歌曲的jsonp
+				num=0;
+			var songData=[
+				{
+					id:0,
+					title:"来生-李琦",
+					src:"music/来生.mp3"
+				},
+				{
+					id:1,
+					title:"我要找到你-陈明",
+					src:"music/我要找到你.mp3"
+				},
+				{
+					id:2,
+					title:"情非得以-庾澄庆",
+					src:"music/情非得以.mp3"
+				},
+				{
+					id:3,
+					title:"你的背包-陈奕迅",
+					src:"music/你的背包.mp3"
+				},
+				{
+					id:4,
+					title:"新不了情-萧敬腾",
+					src:"music/新不了情.mp3"
+				}
+			]
+			player.volume=0.8; //设置默认音量
+			//播放暂停
+			$(".control .play").on("click",function(){
+				if(player.paused){
+					playFlash();
+					findList(nowPlayId);
+				}else{
+					player.pause();
+					clearInterval(timer);
+					$(".control .play").css("backgroundImage","url(img/play.jpg)");
+					$(".diskpic").css("animationPlayState","paused");
+					$(".headpic").css("transform","rotate(-80deg)");
+				}
+				
+			})
+			//静音
+			$(".icon").on("click",function(){
+				var oriVoice=player.volume;
+				if(!player.muted){ 
+					this.style.backgroundImage="url(img/novoi.png)";
+					$(".curVoice").css("width",0);
+					$(".voiBut").css("left",-5);
+				}else{
+					this.style.backgroundImage="url(img/voice.png)";
+					$(".curVoice").css("width",oriVoice*100);
+					$(".voiBut").css("left",oriVoice*100-5);
+				}
+				player.muted=!player.muted;
+			})
+			//下一首
+			$(".next").on("click",function(){
+				if(loopState==="loop"){
+					loopState="order";
+					loopType();
+					loopState="loop";
+					return;
+				}
+				loopType();
+			})
+			//上一首
+			$(".prev").on("click",function(){
+				player.src=songData[nowPlayId].src;
+				player.play();
+				findList(nowPlayId);
+			})
+			//根据传入的参数来设置进度条的显示情况
+			function changeBar(time,allTime){ 
+				var x=time/allTime;
+				$(".bar .run").css("width",x*400);
+				$(".bar .cirBut").css("left",x*400-5);
+			}
+			//将时间转格式输出
+			function transTime(time){
+				var minutes=tools.addZero(parseInt(time/60));
+				var second=tools.addZero(parseInt(time%60));
+				var str=minutes+':'+second;
+				return str;
+			}
+			//拖动调整进度
+			$(".cirBut").on("mousedown",function(e){
+				var disX=e.clientX-this.offsetLeft;
+				clearInterval(timer);
+				document.onmousemove=function(e){
+					var wid=e.clientX-disX;
+					wid=wid<-5?-5:wid;
+					wid=wid>395?395:wid;
+					now=(wid+5)/400*player.duration;
+					$(".cirBut").css("left",wid);
+					$(".bar .run").css("width",wid+5);
+					$(".progBar .now").text(transTime(now));
+					e.preventDefault();
+				}
+				document.onmouseup=function(){
+					player.currentTime=now;
+					if(!player.paused){ //暂停时不开启
+						current();
+					}
+					document.onmousemove=null;
+					document.onmouseup=null;
+				}
+			})
+			//播放时自动改变进度条和播放时间
+			function current(){ 
+				timer=setInterval(function(){
+					$(".progBar .now").text(transTime(player.currentTime));
+					changeBar(player.currentTime,player.duration);
+					if(player.ended){
+						loopType();
+					}
+				},500)
+			}
+			//点击进度条控制进度
+			$(".bar").on("click",function(e){
+				clearInterval(timer);
+				var left=this.getBoundingClientRect().left;
+				var timeRange=e.clientX-left;
+				timeRange=timeRange<0?0:timeRange;
+				timeRange=timeRange>400?400:timeRange;
+				$(".bar .run").css("width",timeRange);
+				$(".bar .cirBut").css("left",timeRange-5);
+				now=(timeRange)/400*player.duration;
+				player.currentTime=now;
+				$(".progBar .now").text(transTime(now));
+				current();
+			})
+			//点击调整音量
+			$(".volProgbar").on("click",function(e){
+				var left=this.getBoundingClientRect().left;
+				var voiceRange=e.clientX-left;
+				voiceRange=voiceRange<0?0:voiceRange;
+				voiceRange=voiceRange>100?100:voiceRange;
+				$(".curVoice").css("width",voiceRange);
+				$(".voiBut").css("left",voiceRange-5);
+				if(player.muted){
+					player.muted=!player.muted;
+				}
+				player.volume=(voiceRange)/100;
+				if(voiceRange===0){ //点击零点切换图标
+					$(".icon").css("backgroundImage","url(img/novoi.png)");
+				}else{
+					$(".icon").css("backgroundImage","url(img/voice.png)");
+				}
+			})
+			
+			//拖动调整音量
+			$(".voiBut").on("mousedown",function(e){
+				var disX=e.clientX-this.offsetLeft;
+				document.onmousemove=function(e){
+					var voiceRange=e.clientX-disX;
+					voiceRange=voiceRange<-5?-5:voiceRange;
+					voiceRange=voiceRange>95?95:voiceRange;
+					if(player.muted){
+						player.muted=!player.muted;
+					}
+					player.volume=(voiceRange+5)/100;
+					$(".voiBut").css("left",voiceRange);
+					$(".curVoice").css("width",voiceRange+5);
+					if(voiceRange===-5){ //滑动到零点切换图标
+						$(".icon").css("backgroundImage","url(img/novoi.png)");
+					}else{
+						$(".icon").css("backgroundImage","url(img/voice.png)");
+					}
+					e.preventDefault();
+				}
+				document.onmouseup=function(){
+					document.onmousemove=null;
+					document.onmouseup=null;
+				}
+			})
+			//双击菜单选歌
+			$(".song").on("dblclick","li",function(e){
+				$(".song li").removeClass("active");
+				$(this).addClass("active");
+				player.src=this.dataset.src;
+				playFlash();
+				e.preventDefault();
+			})
+			//生成歌曲列表
+			function createList(data){
+				var str="";
+				data.forEach(function(item){
+					str+="<li data-src="+item.src+" data-id="+item.id+">"+item.title+"</li>"
+				})
+				$(".song").html(str);
+			}
+			
+			function loopType(){
+				if(loopState==="loop"){
+					player.loop=true;
+				}
+				if(loopState==="order"){ //列表顺序播放
+					player.loop=false;
+					nowPlayId++;
+					nowPlayId%=songData.length;
+					player.src=songData[nowPlayId].src;
+				}
+				if(loopState==="random"){ //列表随机播放
+					player.loop=false;
+					nowPlayId=parseInt(Math.random()*100);
+					nowPlayId%=songData.length;
+					player.src=songData[nowPlayId].src;
+				}
+				playFlash();
+				findList(nowPlayId);
+			}
+			$(".loop").on("click",function(e){
+				
+				loopCode++;
+				loopCode%=3;
+				player.loop=loopCode===0?true:false;
+				loopState=loopArr[loopCode];
+				$(this).text(loopIconArr[loopCode]);
+			})
+			function playFlash(){ //任何途径播放要做的动画
+				player.play();
+				current();
+				$(".control .play").css("backgroundImage","url(img/pause.jpg)");
+				$(".diskpic").css("animationPlayState","running");
+				$(".headpic").css("transform","rotate(-55deg)");
+			}
+			
+			createList(songData);
+			player.ondurationchange=function(){  //切换歌曲时duration改变
+				$(".progBar .all").text(transTime(player.duration));
+				playlist.push(nowPlayId);
+				console.log(playlist);
+			}
+			//根据传入的id给歌单加class
+			function findList(id){
+				var lis=$(".song")[0].getElementsByTagName("li");
+				for (var i = 0; i < lis.length; i++){
+					if(lis[i].dataset.id==id){
+						$(".song li").removeClass("active");
+						$(lis[i]).addClass("active");
+					}
+				}
+			}
+			//搜索歌曲
+			$("#search").on("keyup",function(e){
+				if(e.keyCode===13){
+					if(this.value.trim()===""){
+						return
+					}
+					$(".disk").hide();
+					$(".songlist").show();
+					ask(1);
+				}
+			})
+			//关闭搜索歌曲菜单
+			$(".songlist .close").on("click",function(){
+				$(".disk").show();
+				$(".songlist").hide();
+			})
+			$(".songlist").on("dblclick","li",function(){
+				songData.push({
+					id:songData.length,
+					title:$(this).find("span").eq(1).html()+"-"+$(this).find("span").eq(0).html(),
+					src:this.dataset.src
+				})
+				createList(songData);
+				player.src=this.dataset.src;
+				playFlash();
+				$(".song li").removeClass("active");
+				$(".song li:last").addClass("active");
+			})
+			
+			function ask(n){
+				musicJs=document.createElement("script");
+				musicJs.src="http://search.dongting.com/song/search/old?q="+search.value+"&page="+n+"&size=10&callback=result";
+				document.body.appendChild(musicJs);
+			}
+			function result(data){
+				var str='';
+				$(".tipsCount").text("搜索"+search.value+"，找到"+data.data.length+"首单曲");
+				for (var i = 0; i < data.data.length; i++) {
+					data.data[i].album_name=data.data[i].album_name?data.data[i].album_name:"未找到专辑";
+					str+="<li data-src='"+data.data[i].url_list[1].url+"'><span>"+data.data[i].singer_name+"</span><span>"+data.data[i].song_name+"</span><span>"+data.data[i].album_name+"</span><span>"+data.data[i].url_list[1].duration+"</span><span>"+data.data[i].url_list[1].typeDescription+"</span></li>";
+				}
+				$(".songInfo").html(str);
+				document.body.removeChild(musicJs);
+			}
+		</script>
+	</body>
+</html>
