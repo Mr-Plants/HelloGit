@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jq3.js" ></script>
+		<script src="tools.js" ></script>
+		<style>
+			body,h3{
+				margin: 0;
+			}
+			ul{
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+			#weather{
+				width: 300px;
+				position: relative;
+				left: 200px;
+				top:100px;
+				border-radius: 5px;
+				background:turquoise;
+				color:#fff;
+				box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(0, 0, 0, 0.4);
+			}
+			#weather .head h3{
+				width: 100%;
+				font:20px/40px "微软雅黑";
+				text-align: center;
+			}
+			#weather .head .close{
+				position: absolute;
+				right: 10px;
+				top: 10px;
+				width: 16px;
+				height: 16px;
+				text-align: center;
+			}
+			#weather .content .date{
+				font:16px/20px "微软雅黑";
+				text-align: center;
+				width: 100%;
+			}
+			#weather .content .todayInfo{
+				font:16px/28px "微软雅黑";
+				text-align: center;
+				width: 100%;
+			}
+			#weather .content .todayInfo .pic{
+				width: 130px;
+				height: 130px;
+				margin: 0 auto;
+				background: url(weatherPic/B.png) no-repeat;
+				background-size: 100%;
+			}
+			#weather .content .todayInfo .now{
+				font-size: 28px;
+			}
+			#weather .content .todayInfo .detial{
+				width: 100%;
+				height: 90px;
+				margin-top: 10px;
+			}
+			#weather .content .todayInfo .detial li{
+				float: left;
+				width: 60px;
+				height: 90px;
+				font:14px/20px "微软雅黑";
+				margin: 0 20px;
+			}
+			#weather .content .future{
+				margin-top: 30px;
+			}
+			#weather .content .future li{
+				width: 100%;
+				height: 40px;
+			}
+			#weather .content .future li span{
+				float: left;
+				width: 100px;
+				font:14px/40px "微软雅黑";
+				text-align: center;
+			}
+			#weather .content .future li img{
+				float: left;
+				height: 40px;
+				margin:0 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="weather">
+			<div class="head">
+				<h3>天气</h3>
+				<span class="close">✖</span>
+			</div>
+			<div class="content">
+				<div class="today">
+					<div class="date">北京 | 星期日</div>
+					<div class="todayInfo">
+						<div class="pic"></div>
+						<div class="text">晴朗</div>
+						<div class="temp">
+							<span class="min">-1°<</span>
+							<span class="now">12°</span>
+							<span class="max"><12°</span>
+						</div>
+						<ul class="detial">
+							<li class="humidity">
+								<img src="img/humidity.png" />
+								<span>湿度</span>
+								<span class="data">23%</span>
+							</li>
+							<li class="windSpeed">
+								<img src="img/wind.png" />
+								<span>风力</span>
+								<span class="data">7m/s</span>
+							</li>
+							<li class="pressure">
+								<img src="img/pressure.png" />
+								<span>压力</span>
+								<span class="data">1018hpa</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<ul class="future">
+					<li>
+						<span class="futureDate">明天</span>
+						<img src="weatherPic/H.png"/>
+						<span class="futureTemp">-1~14</span>
+					</li>
+					<li>
+						<span class="futureDate">明天</span>
+						<img src="weatherPic/H.png"/>
+						<span class="futureTemp">-1~14</span>
+					</li>
+					<li>
+						<span class="futureDate">明天</span>
+						<img src="weatherPic/H.png"/>
+						<span class="futureTemp">-1~14</span>
+					</li>
+					<li>
+						<span class="futureDate">明天</span>
+						<img src="weatherPic/H.png"/>
+						<span class="futureTemp">-1~14</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script>
+			var query={"count":1,"created":"2017-02-26T09:00:01Z","lang":"zh-CN","results":{"channel":{"units":{"distance":"mi","pressure":"in","speed":"mph","temperature":"F"},"title":"Yahoo! Weather - Beijing, Beijing, CN","link":"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-2151330/","description":"Yahoo! Weather for Beijing, Beijing, CN","language":"en-us","lastBuildDate":"Sun, 26 Feb 2017 05:00 PM CST","ttl":"60","location":{"city":"Beijing","country":"China","region":" Beijing"},"wind":{"chill":"54","direction":"200","speed":"14"},"atmosphere":{"humidity":"20","pressure":"1118.0","rising":"0","visibility":"16.1"},"astronomy":{"sunrise":"6:52 am","sunset":"6:3 pm"},"image":{"title":"Yahoo! Weather","width":"142","height":"18","link":"http://weather.yahoo.com","url":"http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif"},"item":{"title":"Conditions for Beijing, Beijing, CN at 04:00 PM CST","lat":"39.90601","long":"116.387909","link":"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-2151330/","pubDate":"Sun, 26 Feb 2017 04:00 PM CST","condition":{"code":"27","date":"Sun, 26 Feb 2017 04:00 PM CST","temp":"56","text":"Mostly Sunny"},"forecast":[{"code":"32","date":"26 Feb 2017","day":"Sun","high":"54","low":"30","text":"Sunny"},{"code":"32","date":"27 Feb 2017","day":"Mon","high":"58","low":"30","text":"Sunny"},{"code":"30","date":"28 Feb 2017","day":"Tue","high":"59","low":"35","text":"Partly Cloudy"},{"code":"34","date":"01 Mar 2017","day":"Wed","high":"49","low":"34","text":"Mostly Sunny"},{"code":"32","date":"02 Mar 2017","day":"Thu","high":"55","low":"28","text":"Sunny"},{"code":"34","date":"03 Mar 2017","day":"Fri","high":"57","low":"31","text":"Mostly Sunny"},{"code":"34","date":"04 Mar 2017","day":"Sat","high":"54","low":"32","text":"Mostly Sunny"},{"code":"30","date":"05 Mar 2017","day":"Sun","high":"53","low":"33","text":"Partly Cloudy"},{"code":"34","date":"06 Mar 2017","day":"Mon","high":"51","low":"32","text":"Mostly Sunny"},{"code":"34","date":"07 Mar 2017","day":"Tue","high":"50","low":"31","text":"Mostly Sunny"}],"description":"<![CDATA[<img src=\"http://l.yimg.com/a/i/us/we/52/34.gif\"/>\n<BR />\n<b>Current Conditions:</b>\n<BR />Mostly Sunny\n<BR />\n<BR />\n<b>Forecast:</b>\n<BR /> Sun - Sunny. High: 54Low: 30\n<BR /> Mon - Sunny. High: 58Low: 30\n<BR /> Tue - Partly Cloudy. High: 59Low: 35\n<BR /> Wed - Mostly Sunny. High: 49Low: 34\n<BR /> Thu - Sunny. High: 55Low: 28\n<BR />\n<BR />\n<a href=\"http://us.rd.yahoo.com/dailynews/rss/weather/Country__Country/*https://weather.yahoo.com/country/state/city-2151330/\">Full Forecast at Yahoo! Weather</a>\n<BR />\n<BR />\n(provided by <a href=\"http://www.weather.com\" >The Weather Channel</a>)\n<BR />\n]]>","guid":{"isPermaLink":"false"}}}}};
+			console.log(query.results.channel);
+			var data=query.results.channel;
+			var code=Number(data.item.condition.code);
+			//华氏转摄氏
+			function f2c(n){
+				return parseInt(5/9*(n-32)); 
+			}
+			//天气图标转换
+			function cnInfo(code){
+				if(code>=31&&code<=34){ //晴
+					return 'B';
+				}
+				if(code>=3&&code<=12||code>=37&&code<=40||code===35||code===45||code===47||code===18||code===17){ //雨
+					return 'R';
+				}
+				if(code>=20&&code<=22){ //雾
+					return 'E';
+				}
+				if(code>=0&&code<=2||code>=23&&code<=24){//风
+					return 'F';
+				}
+				if(code>=27&&code<=30||code===44){ //多云
+					return 'H';
+				}
+				if(code>=13&&code<=16){ //小雪
+					return 'X';
+				}
+				if(code>=41&&code<=43||code===46){ //中雪
+					return 'W';
+				}
+				if(code>=25&&code<=26){ //小雪
+					return 'Y';
+				}
+				if(code===36){ //炎热
+					return 'C';
+				}
+			}
+			function code2char(code){
+			    switch(code){
+			        case 0:
+			            return '龙卷风';
+			        case 1:
+			            return '热带风暴';
+			        case 2:
+			            return '暴风';
+			        case 3:
+			            return '大雷雨';
+			        case 4:
+			            return '雷阵雨';
+			        case 5:
+			            return '雨夹雪';
+			        case 6:
+			            return '雨夹雹';
+			        case 7:
+			            return '雪夹雹';
+			        case 8:
+			            return '冻雾雨';
+			        case 9:
+			            return '细雨';
+			        case 10:
+			            return '冻雨';
+			        case 11:
+			            return '阵雨';
+			        case 12:
+			            return '阵雨';
+			        case 13:
+			            return '阵雪';
+			        case 14:
+			            return '小阵雪';
+			        case 15:
+			            return '高吹雪';
+			        case 16:
+			            return '雪';
+			        case 17:
+			            return '冰雹';
+			        case 18:
+			            return '雨淞';
+			        case 19:
+			            return '粉尘';
+			        case 20:
+			            return '雾';
+			        case 21:
+			            return '薄雾';
+			        case 22:
+			            return '烟雾';
+			        case 23:
+			            return '大风';
+			        case 24:
+			            return '风';
+			        case 25:
+			            return '冷';
+			        case 26:
+			            return '阴';
+			        case 27:
+			            return '多云';
+			        case 28:
+			            return '多云';
+			        case 29:
+			            return '局部多云';
+			        case 30:
+			            return '局部多云';
+			        case 31:
+			            return '晴';
+			        case 32:
+			            return '晴';
+			        case 33:
+			            return '转晴';
+			        case 34:
+			            return '转晴';
+			        case 35:
+			            return '雨夹冰雹';
+			        case 36:
+			            return '较热';
+			        case 37:
+			            return '局部雷雨';
+			        case 38:
+			            return '偶有雷雨';
+			        case 39:
+			            return '偶有雷雨';
+			        case 40:
+			            return '偶有阵雨';
+			        case 41:
+			            return '大雪';
+			        case 42:
+			            return '零星阵雪';
+			        case 43:
+			            return '大雪';
+			        case 44:
+			            return '局部多云';
+			        case 45:
+			            return '雷阵雨';
+			        case 46:
+			            return '阵雪';
+			        case 47:
+			            return '局部雷阵雨';
+			        default:
+			            return '水深火热';
+			    }
+			}
+			var cnDay=new Date().getDay();
+			var detialStr="";
+			$("#weather .date").text("北京 |"+" "+tools.getCnDay(cnDay));
+			$("#weather .pic").css("backgroundImage","url(weatherPic/"+cnInfo(code)+".png)");
+			$("#weather .text").text(code2char(code));
+			$("#weather .now").text(f2c(data.item.condition.temp)+"°");
+			$("#weather .min").text(f2c(data.item.forecast[0].low)+"°<");
+			$("#weather .max").text("<"+f2c(data.item.forecast[0].high)+"°");
+			$(".humidity .data").text(data.atmosphere.humidity+"%");
+			$(".windSpeed .data").text(data.wind.speed+"m/s");
+			$(".pressure .data").text(parseInt(data.atmosphere.pressure)+"hpa");
+			for (var i = 1; i < 5; i++){
+				$(".future li .futureDate").eq(i-1).text(tools.getCnDay(cnDay+i));
+				$(".future li img").eq(i-1).attr("src","weatherPic/"+cnInfo(Number(data.item.forecast[i].code))+".png");
+				$(".future li .futureTemp").eq(i-1).text(f2c(data.item.forecast[i].low)+"~"+f2c(data.item.forecast[i].high));
+			}
+		</script>
+	</body>
+</html>
