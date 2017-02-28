@@ -10,8 +10,8 @@ var musicTimer=null,
 var songData=[
 	{
 		id:0,
-		title:"来生-李琦",
-		src:"music/来生.mp3"
+		title:"情非得已-庾澄庆",
+		src:"music/情非得已.mp3"
 	},
 	{
 		id:1,
