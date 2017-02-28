@@ -7,3 +7,6 @@
 vue的watch作用？
 ie9 placeholder 兼容问题
 引入iscroll模块替换原始滚动条
+绝对居中的弹框
+
+http://tingapi.ting.baidu.com/v1/restserver/ting?size=20&type=2&callback=cb_list&_t=1468380543284&format=json&method=baidu.ting.search.catalogSug{ query:牵丝线}

@@ -1,0 +1,126 @@
+/*---------日历----------*/
+#CalendarMain {
+	width: 300px;
+	height: 300px;
+	font-family: "微软雅黑";
+	position: absolute;
+	left: 100px;
+	top: 200px;
+	background: #fff;
+	box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(0, 0, 0, 0.4);
+	transform: scale(0);
+	border-radius: 3px;
+}
+#title {
+	width: 100%;
+	height: 35px;
+	background:lightcoral;
+	border-radius: 3px 3px 0 0;
+}
+#title a{
+	float: left;
+	font-size: 16px;
+	color: #fff;
+	text-decoration: none;
+	padding: 0 10px;
+	height: 35px;
+	line-height: 35px;
+}
+
+#title a:hover {
+	background-color: rgba(0,0,0,0.1);
+}			
+#title .selectYear {
+	margin-left: 30px;
+}						
+#title .nextMonth {
+	float: right;
+}			
+#title .currentDay {
+	float: right;
+}			
+#context {
+	background-color: #fff;
+	width: 100%;
+	height: 235px;
+}
+.week {
+	width: 100%;
+	height: 30px;
+}		
+.week span{
+	float: left;
+	width: 40px;
+	height: 100%;
+	color: #999;
+	text-align:center;
+	font-size: 18px;
+	line-height: 30px;
+	margin-left:2px;
+}
+.week .fir{
+	margin-right: 2px;
+}
+.dayItem {
+	float: left;
+	width: 300px;
+}			
+.lastItem {
+	color: #d1c7b7 !important;
+}
+.item {
+	color: #333;
+	float: left;
+	text-align: center;
+	margin: 0;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+
+.item:hover {
+	color:red;
+}
+.currentItem a{
+	background:crimson;
+	width: 25px;
+	line-height: 25px;
+	float: left;
+	border-radius: 50%;
+	color: #fff;
+}
+#Container {
+	overflow: hidden;
+	float: left;
+}	
+#center {
+	width: 100%;
+	overflow: hidden;
+	height: 205px;
+}
+#centerMain {
+	width: 300%;
+	margin-left: -100%;
+}
+#centerMain>div{
+	width: 300px;
+	height: 205px;
+	float: left;
+}
+#selectYearDiv div{
+	float: left;
+	text-align: center;
+	font-size: 16px;
+	color: #999;
+}	
+.currentYearSd,.currentMontSd{
+	color: red !important;
+}		
+#selectMonthDiv div{
+	color: #999;
+	float: left;
+	text-align: center;
+	font-size: 16px;
+}
+#selectYearDiv div:hover,#selectMonthDiv div:hover {
+	background: rgba(0,0,0,0.1);
+}

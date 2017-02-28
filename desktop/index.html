@@ -4,11 +4,12 @@
 		<meta charset="utf-8" />
 		<title>海鸥桌面</title>
 		<link rel="stylesheet" href="css/index.css" />
+		<link rel="stylesheet" href="css/music.css" />
+		<link rel="stylesheet" href="css/calender.css" />
 		<link rel="icon" href="img/favicon.ico" type="image/x-icon">  
 		<script src="js/jq3.js" ></script>
 		<script src="js/tools.js"></script>
 		<script src="js/vue.js"></script>
-		
 	</head>
 	<body>
 		<div id="time">
@@ -16,13 +17,6 @@
 			<span class="second">55</span>
 			<span class="year">2014-05-05 星期一</span>-->
 		</div>
-		<!--<div class="memo">
-			<div class="top">
-				<span class="add">✚</span>
-				<span class="close">✖</span>
-			</div>
-			<div class="fake" contenteditable="true">添加你的便签</div>
-		</div>-->
 		<!--------------待办事项--------------->
 		<div id="todos">
 			<div class="head">
@@ -49,6 +43,7 @@
 				<li v-for="item in list" :class="{checked:item.isChecked,edit:item===editItem}" v-show="now==='all'||item.show">
 					<span class="check" @click="changeCheck(item)" v-show="item!==editItem"><span v-show="item.isChecked">✔</span></span>
 					<span class="text" @dblclick="edit(item)">{{item.content}}<span class="del" @click="deleteList(item)">✖</span></span>
+					<span class="date" v-show="item!==editItem">创建于{{item.Date}}</span>
 					<input 
 						type="text"
 						v-model="item.content"
@@ -69,18 +64,250 @@
 				<span class="clear" v-show="checkLen&&now!=='active'" @click="remove">移除完成的</span>
 			</div>
 		</div>
+		<!-----------------音乐播放器------------------>
+		<div id="music">
+			<header>
+				<h1>海鸥音乐</h1>
+				<input type="text" placeholder="搜索音乐" id="musicSearch"/>
+				<div class="buttons">
+					<span class="hide">➖</span>
+					<span class="close">✖</span>
+				</div>
+			</header>
+			<div class="content">
+				<div class="list">
+					<div class="title">默认列表[<strong>5</strong>]</div>
+					<ul class="song"></ul>
+				</div>
+				<div class="zone">
+					<div class="disk">
+						<span class="diskpic"></span>
+						<span class="headpic"></span>
+					</div>
+					<div class="songlist">
+						<span class="closeSearchList">✖</span>
+						<div class="head">
+							<span>歌手</span>
+							<span>歌曲名</span>
+							<span>专辑</span>
+							<span>时间</span>
+							<span>品质</span>
+						</div>
+						<div class="tipsCount">远程访问被拒绝...</div>
+						<ul class="songInfo"></ul>
+					</div>
+				</div>
+			</div>
+			<div class="footer">
+				<div class="control">
+					<span class="prev"></span>
+					<span class="play"></span>
+					<span class="next"></span>
+				</div>
+				<div class="progBar">
+					<span class="now">00:00</span>
+					<div class="bar">
+						<span class="run"></span>
+						<span class="cirBut">◉</span>
+					</div>
+					<span class="all">00:00</span>
+				</div>
+				<div class="volum">
+					<span class="icon"></span>
+					<span class="volProgbar">
+						<span class="curVoice"></span>
+						<span class="voiBut">◉</span>
+					</span>
+					<span class="loop"></span>
+				</div>
+			</div>
+		</div>
+		<audio id="player" src="music/来生.mp3">请升级浏览器</audio>
+		<!--------------设置------------------>
+		<div id="setting">
+			<div class="head">
+				<h3>设置</h3>
+				<span class="close">✖</span>
+			</div>
+			<div class="tipsBox">本地存储已清空</div>
+			<ul class="content">
+				<li class="clearStorage">清空本地存储</li>
+				<li class="changePaper">更换壁纸</li>
+				<li class="update">检查更新</li>
+				<li class="about">关于海鸥桌面</li>
+				<li class="author">联系作者</li>
+			</ul>
+			<div class="getTouch">邮箱：1171098609@qq.com</div>
+			<div class="foot">海鸥桌面 v1.0.0©</div>
+		</div>
+		<!---------------搜索------------------>
+		<div id="search">
+			<div class="head">
+				<h3>百度</h3>
+				<input type="text" placeholder="搜你所想"/>
+				<span class="mirrow"></span>
+			</div>
+			<ul class="tipWord"></ul>
+		</div>
+		<!-----------------常用链接-------------------->
+		<div id="Tools">
+			<span class="tips">常用链接</span>
+			<ul id="links">
+				<li data-href="https://www.jd.com/">
+					<img src="img/jd.png" alt="" />
+					<span>京东商城</span>
+				</li>
+				<li data-href="https://www.github.com/">
+					<img src="img/git.png" alt="" />
+					<span>GitHub</span>
+				</li>
+				<li data-href="http://weibo.com/">
+					<img src="img/weibo.png" alt="" />
+					<span>新浪微博</span>
+				</li>
+				<li data-href="https://ke.qq.com/">
+					<img src="img/school.png" alt="" />
+					<span>腾讯课堂</span>
+				</li>
+				<li data-href="http://www.bilibili.com/">
+					<img src="img/bilibili.png" alt="" />
+					<span>哔哩哔哩</span>
+				</li>
+				<li data-href="https://www.zhihu.com/">
+					<img src="img/zhihu.png" alt="" />
+					<span>知乎</span>
+				</li>
+				<li data-href="http://www.12306.cn/">
+					<img src="img/train.png" alt="" />
+					<span>12306</span>
+				</li>
+				<li data-href="http://map.baidu.com/">
+					<img src="img/map.png" alt="" />
+					<span>百度地图</span>
+				</li>
+			</ul>
+		</div>
+		<!----------------壁纸选择-------------->
+		<div id="changePaper">
+			<div class="head">
+				<h3>更换壁纸</h3>
+				<span class="close">✖</span>
+			</div>
+			<div class="paper">
+				<img src="img/blueLomo.jpg" data-src="img/blueLomo.jpg" />
+				<img src="img/brownLomo.jpg" data-src="img/brownLomo.jpg" />
+				<img src="img/star.jpg" data-src="img/star.jpg" />
+				<img src="img/zen.jpg" data-src="img/zen.jpg" />
+				<img src="img/rain.jpg" data-src="img/rain.jpg" />
+				<img src="img/fly.jpg" data-src="img/fly.jpg" />
+			</div>
+		</div>
+		<!----------------天气--------------->
+		<div id="weather">
+			<div class="head">
+				<h3>天气</h3>
+				<span class="close">❯</span>
+			</div>
+			<div class="content">
+				<div class="today">
+					<div class="date">北京 | 星期日</div>
+					<div class="todayInfo">
+						<div class="pic"></div>
+						<div class="text">晴朗</div>
+						<div class="temp">
+							<span class="min">-1°<</span>
+							<span class="now">12°</span>
+							<span class="max"><12°</span>
+						</div>
+						<ul class="detial">
+							<li class="humidity">
+								<img src="weatherPic/humidity.png" />
+								<span>湿度</span>
+								<span class="data">23%</span>
+							</li>
+							<li class="windSpeed">
+								<img src="weatherPic/wind.png" />
+								<span>风力</span>
+								<span class="data">7m/s</span>
+							</li>
+							<li class="pressure">
+								<img src="weatherPic/pressure.png" />
+								<span>气压</span>
+								<span class="data">1018hpa</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<ul class="future">
+					<li>
+						<span class="futureDate">明天</span>
+						<img src="weatherPic/H.png"/>
+						<span class="futureTemp">-1~14</span>
+					</li>
+					<li>
+						<span class="futureDate">明天</span>
+						<img src="weatherPic/H.png"/>
+						<span class="futureTemp">-1~14</span>
+					</li>
+					<li>
+						<span class="futureDate">明天</span>
+						<img src="weatherPic/H.png"/>
+						<span class="futureTemp">-1~14</span>
+					</li>
+					<li>
+						<span class="futureDate">明天</span>
+						<img src="weatherPic/H.png"/>
+						<span class="futureTemp">-1~14</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!----------------日历-------------------->
+		<div id="CalendarMain">
+			<div id="title">
+				<a class="prevMonth">❮</a>
+				<a class="selectYear">2014年</a>
+				<a class="selectMonth">6月</a>
+				<a class="nextMonth">❯</a>
+				<a class="currentDay">今天</a>
+			</div>
+			<div id="context">
+				<div class="week">
+					<span class="fir">一</span>
+					<span>二</span>
+					<span>三</span>
+					<span>四</span>
+					<span>五</span>
+					<span>六</span>
+					<span>日</span>
+				</div>
+				<div id="center">
+					<div id="centerMain">
+						<div id="selectYearDiv"></div>
+						<div id="centerCalendarMain">
+							<div id="Container"></div>
+						</div>
+						<div id="selectMonthDiv"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!----------------about----------------->
+		<div id="about">
+			<div class="head">
+				<h3>关于海鸥桌面</h3>
+				<span class="close">✖</span>
+			</div>
+			<div class="content">
+				海鸥桌面是作者个人设计制作的以功能性为主的web产品，期间多次更改，没学过设计，知识有限，界面不符合审美之处和Bug还请不吝联系指出。
+				最后，感谢百度云音乐，雅虎天气，百度搜索建议等提供的Api。感谢Jquery,Vue等开源框架对于这个项目的帮助。
+			</div>
+		</div>
+		<!---------------------dock栏----------------------->
 		<footer>
 			<div class="dock">
 				<div>
-					<a></a>
-					<span>豆瓣电影</span>
-				</div>
-				<div>
-					<a></a>
-					<span>小说</span>
-				</div>
-				<div>
-					<a></a>
+					<a class="music"></a>
 					<span>音乐</span>
 				</div>
 				<div>
@@ -88,20 +315,16 @@
 					<span>待办事项</span>
 				</div>
 				<div>
-					<a></a>
+					<a class="weather"></a>
 					<span>天气</span>
 				</div>
 				<div>
-					<a></a>
-					<span>照片</span>
+					<a class="calender"></a>
+					<span>日历</span>
 				</div>
 				<div>
-					<a></a>
+					<a class="setting"></a>
 					<span>设置</span>
-				</div>
-				<div>
-					<a></a>
-					<span>计算器</span>
 				</div>
 				<div>
 					<a class="note"></a>
@@ -110,5 +333,7 @@
 			</div>
 		</footer>
 		<script src="js/index.js"></script>
+		<script src="js/music.js"></script>
+		<script src="js/calender.js" ></script>
 	</body>	
 </html>
