@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script>
+			var dpr=1/window.devicePixelRatio;
+			document.write('<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale='+dpr+',minimum-scale='+dpr+',maximum-scale='+dpr+'" />')
+			var html=document.documentElement;
+			var rem=html.clientWidth/75
+			html.style.fontSize=rem+"px";
+			//阻止默认行为，防止ios10下禁用缩放失效
+			document.addEventListener("touchstart",function(e){
+				e.preventDefault();
+			})
+		</script>
+		<link rel="stylesheet" href="css/index.css" />
+		<script src="js/zepto.min.js" ></script>
+		<script src="js/tools.js" ></script>
+	</head>
+	<body>
+		<header>
+			<h1>木木笔记</h1>
+			<div class="edit">编辑</div>
+		</header>
+		<section>
+			<div class="serBox">
+				<input type="text" placeholder="搜索" class="search"/>
+				<img src="img/search.png" alt="" />
+				<span class="cancel">取消</span>
+			</div>
+			<ul class="content">
+				<!--<li>
+					<div class="context">
+						<div class="checkbox"></div>
+						<div class="text">
+							<div class="title">春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟</div>
+							<div class="Info">
+								<span class="date">2017/2/18</span>
+								<span class="detial">鸟春眠不觉晓，处处闻啼鸟鸟春眠不觉晓，处处闻啼鸟鸟春眠不觉晓，处处闻啼鸟鸟春眠不觉晓，处处闻啼鸟夜来风雨声，花落知多少</span>
+							</div>
+						</div>
+					</div>
+					<div class="delete">
+						<div class="mark">标记</div>
+						<div class="delBtn">删除</div>
+					</div>
+				</li>-->
+			</ul>
+		</section>
+		<footer>
+			<div class="markAll">标记全部</div>
+			<div class="count">15个笔记</div>
+			<div class="create"></div>
+			<div class="deleteAll">删除全部</div>
+		</footer>
+		<script src="js/index.js"></script>
+	</body>
+</html>

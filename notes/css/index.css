@@ -1,0 +1,204 @@
+body{
+	margin: 0;
+	font-family: "微软雅黑";
+	background: #fff;
+}
+ul{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+header{
+	height: 8.8rem;
+	border-bottom:1px solid #ccc;
+	position: relative;
+	line-height:8.8rem;
+}
+header h1{
+	height: 100%;
+	font-size:3.4rem;
+	text-align: center;
+	font-weight: normal;
+	margin: 0;
+}
+header .edit{
+	height: 100%;
+	font-size:3.4rem;
+	position: absolute;
+	right: 3rem;
+	top:0;
+	font-weight: bold;
+	color:#e4af0a;
+	padding: 0 2rem;
+}
+section .serBox{
+	margin: 1.6rem 0;
+	position: relative;
+}
+section .serBox img{
+	position: absolute;
+	left: 3.8rem;
+	top: 1.8rem;
+	width: 2.2rem;
+}
+section .serBox .cancel{
+	position: absolute;
+	right:0;
+	top: 0;
+	height: 100%;
+	font:3.2rem/5.6rem "微软雅黑";
+	color:#e1a60a;
+	padding: 0 2rem;
+	display: none;
+}
+section .serBox .search{
+	width:71.8rem;
+	height: 5.6rem;
+	margin:0 auto;
+	font-size: 2.6rem;
+	text-indent: 6rem;
+	padding: 0;
+	border:none;
+	border-radius: 1rem;
+	margin-left: 1.6rem;
+	outline: none;
+	background: rgba(0,0,0,0.05);
+	transition: 0.3s;
+}
+.content li{
+	height: 12.2rem;
+	position: relative;
+	/*360等浏览器兼容性处理*/
+	overflow: hidden;  
+}
+
+.content li .context{
+	position: absolute;
+	top: 0;
+	left:-7.6rem;
+	z-index: 1;
+	width: 82.6rem;
+	height:12.1rem;
+	background: #fff;
+}
+.content li .context .checkbox{
+	position: absolute;
+	top: 0;
+	left:2.4rem;
+	bottom: 0;
+	width: 4rem;
+	height:4rem;
+	border:2px solid #c7c7cc;
+	border-radius: 50%;
+	margin:auto 0;
+	font:2rem/4rem arial;
+	text-align: center;
+	color:#fff;
+}
+.content li .context .text{
+	position: absolute;
+	top: 0;
+	left: 13.2rem;
+	height:100%;
+	width: 69.4rem;	
+}
+.content li .context .text .title{
+	margin-top: 2.4rem;
+	font-size:3.4rem;
+	line-height: 3.4rem;
+	width: 56rem;
+	color:#353535;
+	white-space: nowrap;  
+	text-overflow:ellipsis; 
+	overflow:hidden;
+}
+.content li .context .text .Info{
+	width: 56rem;
+	margin-top: 1rem;
+	font-size:3rem;
+	line-height: 3rem;
+	color:#5f5f5f;
+	white-space: nowrap;  
+	text-overflow:ellipsis; 
+	overflow:hidden;
+}
+.content li .active{
+	background: rgba(228,180,10,0.2);
+}
+.content li .active .checkbox{
+	border:2px solid #e4af0a;
+	background: #e4af0a;
+}
+/*------删除标记-------*/
+.content li .delete{
+	position: absolute;
+	top: 0;
+	left: 5.6rem;
+	height:12.1rem;
+	width: 69.4rem;	
+	border-bottom: 1px solid #c8c7cc;
+}
+.content li .delete .mark{
+	position: absolute;
+	top: 0;
+	right: 13.4rem;
+	height:12.1rem;
+	width: 13.4rem;	
+	font:3.4rem/12.1rem "微软雅黑";
+	color:#fff;
+	text-align: center;
+	background: #c7c7cc;
+}
+.content li .delete .delBtn{
+	position: absolute;
+	top: 0;
+	right: 0;
+	height:12.1rem;
+	width: 13.4rem;	
+	font:3.4rem/12.1rem "微软雅黑";
+	color:#fff;
+	text-align: center;
+	background: #ff3b30;
+}
+
+/*--------footer--------*/
+footer{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 8.8rem;
+	border-top: 1px solid #c8c7cc;
+}
+footer .count{
+	width: 100%;
+	font:2.6rem/8.8rem "微软雅黑";
+	text-align: center;
+}
+footer .create{
+	position: absolute;
+	right:2.5rem;
+	top: 0;
+	width: 10.4rem;
+	height: 8.8em;
+	background: url(../img/create.png) no-repeat center center;
+	background-size: 5rem;
+}
+footer .markAll{
+	position: absolute;
+	left: 0;
+	top: 0;
+	font: bold 3.4rem/8.8rem "微软雅黑";
+	padding: 0 3rem;
+	color:#e4af0a;
+	display: none;
+}
+footer .deleteAll{
+	position: absolute;
+	right: 0;
+	top: 0;
+	font: bold 3.4rem/8.8rem "微软雅黑";
+	padding: 0 3rem;
+	color:#e4af0a;
+	display: none;
+}
