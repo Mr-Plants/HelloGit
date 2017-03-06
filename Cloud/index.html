@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/weiyun.css" />
+	</head>
+	<body>
+		<div id="content">
+			<header>
+				<!--头部-->
+				<div class="left">
+					<h1 class="logo">妙味微云</h1>
+				</div>
+				<div id="warn">
+					<span class="icon"></span>
+					<span class="tips">删除文件成功</span>
+				</div>
+				<div class="right">
+					<span class="userPic"></span>
+					<span class="pull"></span>
+					<span class="line"></span>
+					<span class="set"></span>
+				</div>
+			</header>
+			<!--功能导航区-->
+			<nav class="topNav">
+				<div class="leftBtn clearfix">
+					<a href="javascript:;">
+						<span class="btnPic"></span>
+						<span class="name">下载</span>
+					</a>
+					<a href="javascript:;">
+						<span class="btnPic"></span>
+						<span class="name">分享</span>
+					</a>
+					<a href="javascript:;" class="move">
+						<span class="btnPic"></span>
+						<span class="name">移动到</span>
+					</a>
+					<a href="javascript:;" class="rename">
+						<span class="btnPic"></span>
+						<span class="name">重命名</span>
+					</a>
+					<a href="javascript:;" class="delete">
+						<span class="btnPic"></span>
+						<span class="name">删除</span>
+					</a>
+					<a href="javascript:;" class="create">
+						<span class="btnPic"></span>
+						<span class="name">新建文件夹</span>
+					</a>
+					<a href="javascript:;">
+						<span class="btnPic"></span>
+					</a>
+				</div>
+				<div class="rightBtn clearfix">
+					<a href="javascript:;">
+						<span class="btnPic"></span>
+					</a>
+					<a href="javascript:;">
+						<span class="btnPic"></span>
+						<span class="pull"></span>
+					</a>
+				</div>
+			</nav>
+			<div id="subcont">
+				<!--左侧树形菜单-->
+				<div class="list"> 
+					<!--<ul>
+						<li>
+							<div><em></em><i></i><span>微云</span></div>
+							<ul></ul>
+						</li>
+					</ul>-->
+				</div>
+				<!--右侧文件展示区-->
+				<div class="showblock">
+					<!--面包屑-->
+					<div class="topguide">
+						<!--<span class="checkall"></span>
+						<span class="guide">微云</span>
+						<span class="rightarrow"></span>-->
+					</div>
+					<!--展示区-->
+					<div class="folder">
+						<div class="filecont">
+							<!--<div class="item">
+								<em>✔</em>
+								<span class="typepic"></span>
+								<span class="filename">JS基础课程</span>
+								<input type="text" />
+							</div>-->
+						</div>
+						<!--没有文件时提示-->
+						<div class="warn">
+							<span class="piclogo"></span>
+							<span class="nofile">暂无文件</span>
+							<span class="tips">请点击左上角的“上传”按钮添加</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--<div class="tipbox">
+			<h3>删除文件</h3>
+			<span class="close"></span>
+			<div class="cont">确定要删除这些文件夹吗？
+				<br /><span>删除的文件可以在回收站中找到</span></div>
+			<span class="confirm btn">确定</span>
+			<span class="cancel btn">取消</span>
+		</div>-->
+		<!--<div class="flyBox">
+			<span>5</span>
+		</div>-->
+		<script src="js/data.js"></script>
+		<script src="js/handleData.js"></script>
+		<script src="js/tools.js"></script>
+		<script>
+//-----------------------------------获取元素-----------------------------------------
+			var subcont=document.getElementById("subcont");
+			var list=subcont.getElementsByClassName("list")[0];
+			var divs=list.getElementsByClassName("div");
+			var datas=data.files;
+			var topGuide=document.querySelector("#subcont .showblock .topguide");
+			var fileCont=document.querySelector("#subcont .showblock .folder .filecont");
+			var warn=document.querySelector("#subcont .showblock .folder .warn");
+			var items=fileCont.getElementsByClassName("item");
+			var currentId=0;
+			var create=document.querySelector(".create");
+			var del=document.querySelector(".delete");
+			var reName=document.querySelector(".rename");
+			var move=document.querySelector(".move");
+			var warnBox=document.getElementById("warn");
+			var as=document.getElementsByTagName("a");
+			var fileName=fileCont.getElementsByClassName("filename");
+			var checkAll;
+
+			
+
+//-----------------------------------渲染页面-----------------------------------------
+			//根据传入id查找自己的所有子数据并生成树形菜单
+			var intid=-1;
+			function createTreeHtml(id){
+				var arr=handle.getChildsById(datas,id);
+				var paLength=handle.getParentById(datas,id).length; //根据父级个数控制菜单缩进
+				var str="";
+				if(arr.length){
+					str+="<ul class='clearfix'>";
+					arr.forEach(function(value){
+						var childs=handle.getChildsById(datas,value.id);
+						var className=childs.length?"icon":"";
+					    str+="<li class='clearfix'><div class='div' style='padding-left:"+paLength*20+"px;' data-id='"+value.id+"'><em class="+className+"></em><i></i><span>"+value.title+"</span></div>";
+					    str+=createTreeHtml(value.id);
+					    str+="</li>";
+					})
+					str+="</ul>";
+				}
+				return str;
+			}
+			list.innerHTML=createTreeHtml(intid);
+			
+
+
+			//根据传入id寻找所有父数据并生成导航区
+			function createBreadHtml(id){
+				var arr=handle.getParentById(datas,id).reverse();
+				var str='<span class="checkall"></span>';
+				for (var i = 0; i < arr.length; i++) {
+					if(i==arr.length-1){
+						str+='<span class="guide" data-id="'+arr[i].id+'">'+arr[i].title+'</span>';
+					}else{
+						str+='<span class="guide" data-id="'+arr[i].id+'">'+arr[i].title+'</span><span class="rightarrow"></span>';
+					}
+				}
+				return str;
+			}
+			topGuide.innerHTML=createBreadHtml(0);
+			checkAll=document.getElementsByClassName("checkall")[0];
+
+
+			//根据传入id生成文件夹
+			function createFilesHtml(id){
+				var arr=handle.getChildsById(datas,id);
+				var str="";
+				if(arr.length){
+					fileCont.style.display="block";
+					warn.style.display="none";
+					arr.forEach(function(value){
+					    str+='<div class="item" data-id="'+value.id+'"><em data-id="'+value.id+'"></em><span class="typepic" data-id="'+value.id+'"></span><span class="filename" data-id="'+value.id+'">'+value.title+'</span><input type="text" class="inp"/></div>';
+					})
+				}else{
+					str+="";
+					fileCont.style.display="none";
+					warn.style.display="block";
+				}
+				return str;
+			}
+			fileCont.innerHTML=createFilesHtml(0);
+			
+			//为选中菜单添加背景颜色
+			function positionById(id){
+				for (var i = 0; i < divs.length; i++){
+					if(divs[i].dataset.id==id){
+						divs[i].style.background="#e1e8ee";
+					}else{
+						divs[i].style.background="";
+					}
+				}
+			}
+			positionById(0);
+			
+			
+//---------------------------三个区域的交互---------------------------			 
+			//上部导航区点击函数
+			topGuide.addEventListener("mouseup",function(e){
+				var target=e.target;
+				if(target.className=="guide"){
+					tools.render(target.dataset.id);
+					currentId=target.dataset.id;
+				}
+				//全选按钮点击
+				if(tools.hasClass(target,"checked")){
+					for (var i = 0; i < items.length; i++) {
+						tools.removeClass(items[i],"active");
+					}
+					tools.removeClass(target,"checked");
+				}else if(tools.hasClass(target,"checkall")){
+					var arr=handle.getChildsById(datas,currentId);
+					if(!arr.length){
+						tools.tipsGo("plzChoice","没有可以被选择的文件");
+						return;
+					}
+					tools.addClass(target,"checked");
+					for (var i = 0; i < items.length; i++) {
+						tools.addClass(items[i],"active");
+					}
+				}
+			})
+			
+			
+			//-------------------------左侧树形菜单点击函数------------------------
+			list.addEventListener("mouseup",function(e){
+				var target=e.target;
+				if(target=tools.parent(target,".div")){
+					tools.render(target.dataset.id);
+					currentId=target.dataset.id;
+				}
+			})
+
+
+			//-----------------------------文件区域点击函数--------------------
+			fileCont.addEventListener("click",function(e){
+				var target=e.target;
+				if(tools.parent(target,"em")){ //点击勾选
+					if(!tools.hasClass(target.parentNode,"active")){						
+						tools.addClass(target.parentNode,"active");
+					}else{
+						tools.removeClass(target.parentNode,"active");
+					}
+					//判断是否全选
+					tools.isCheckAll();
+				//进入下一级
+				}else if(tools.parent(target,".item")){
+//					target=tools.parent(target,".item")
+					tools.render(target.dataset.id);
+					currentId=target.dataset.id;
+				}		
+			})
+			
+			
+			
+
+			//-------------------------------新建文件夹-------------------------------
+			create.addEventListener("mouseup",function(e){
+				var item=document.createElement("div");
+				item.className="item";
+				var em=document.createElement("em");
+				var typepic=document.createElement("span");
+				typepic.className="typepic";
+				var filename=document.createElement("span");
+				filename.className="filename";
+				filename.style.display="none";
+				var inp=document.createElement("input");
+				inp.type=Text;
+				inp.style.display="block";
+				//放入
+				if(!fileCont.firstElementChild){
+					warn.style.display="none";
+					fileCont.style.display="block";
+					fileCont.appendChild(item);
+				}else{
+					fileCont.insertBefore(item,fileCont.firstElementChild);
+				}
+				item.appendChild(em);
+				item.appendChild(typepic);
+				item.appendChild(filename);
+				item.appendChild(inp);
+				inp.focus();
+//				//失去焦点时判断是否创建成功
+				inp.onblur=function(){
+					if(!inp.value.trim()){
+						fileCont.removeChild(fileCont.firstElementChild);
+						tools.tipsGo("plzChoice","文件名不能为空，创建文件不成功");
+					}else{
+						if(!tools.nameCheck(inp.value)){
+							tools.tipsGo("plzChoice","文件名不能重复,请修改");
+							inp.focus();
+							return;
+						};
+						filename.style.display="block";
+						inp.style.display="none";
+						filename.innerHTML=inp.value;
+						var j={
+							id:parseInt(Math.random()*1000),
+							pid:currentId,
+							title:filename.innerHTML
+						};
+						datas.unshift(j);
+						list.innerHTML=createTreeHtml(intid);
+						tools.render(currentId);
+						tools.tipsGo("delSuc","创建文件夹成功");
+					}
+				}
+			},false);
+
+			
+			//-------------------------------删除选中文件------------------------
+			del.addEventListener("mouseup",function(e){
+				//找到所有被标记的文件夹
+				var arr=Array.from(items).filter(function(value){
+					return tools.hasClass(value,"active");
+				});
+				if(!arr.length){
+					tools.tipsGo("plzChoice","请选择要删除的文件");
+					return;
+				}
+				tools.tipBox({
+					title:"删除文件",
+					cont:'确定要删除这些文件夹吗？<br /><span class="subcont">删除的文件可以在回收站中找到</span>',
+					okFn:function(){
+						arr.forEach(function(value){
+							var a=value.dataset.id;
+							var arrChild=handle.getAllChildsById(datas,a);//找到指定id下的所有子数据
+							arrChild.forEach(function(item){
+								var n=datas.findIndex(function(value){ //在data中找到所有子数据
+									return value.id==item.id;
+								});
+								datas.splice(n,1);
+							})
+							var n=datas.findIndex(function(value){ //在data中找到父级
+								return value.id==a;
+							});
+							datas.splice(n,1);
+						})
+						list.innerHTML=createTreeHtml(intid);
+						tools.render(currentId);
+						tools.tipsGo("delSuc","删除文件成功");
+					}
+				})
+				
+			},false);
+			
+			
+			//----------------------------框选------------------------------
+			fileCont.addEventListener("mousedown",function(e){
+				var div=null;
+				var fly=null;
+				var selElement=null;  //碰撞时被选中的元素
+				var noselect=null; //未被选中的
+				var onchecked=false; //是否在被选中文件夹上按下
+				var selectArr=tools.isSelect(items); //检测被选中的文件夹
+				
+				var target=e.target;
+		    	var oriX = e.clientX ;
+		    	var oriY = e.clientY ;
+		    	if(tools.parent(target,".active")){
+		    		onchecked=true;
+		    		noselect=tools.noSelect(items);
+		    	}
+		    	document.onmousemove = function(e){
+		    		var absW= Math.abs( e.clientX - oriX );
+		    		var absH= Math.abs( e.clientY - oriY );
+		    		if(onchecked){ //如果在被选中文件夹上移动
+		    			if(absW>5||absH>5){
+			    			if(!fly){
+			    				fly=document.createElement("div");
+						    	fly.className ="flyBox";
+						    	document.body.appendChild(fly);
+						    	fly.innerHTML="<span>"+selectArr.length+"</span>";
+						    	faker=document.createElement("div");
+						    	faker.className ="faker";
+						    	document.body.appendChild(faker);
+			    			}
+			    			selElement=null;
+				    		fly.style.left = e.clientX+15 + "px";
+				    		fly.style.top =  e.clientY+15 + "px";
+				    		faker.style.left = e.clientX-5 + "px";
+				    		faker.style.top =  e.clientY-5 + "px";
+				    		for (var i = 0; i < noselect.length; i++) {//让div和每一个文件夹进行碰撞检测
+				    			if( tools.peng(faker,noselect[i]) ){
+				    				tools.addClass(noselect[i],"canMove");//碰到
+				    				selElement=noselect[i];
+				    			}else{
+				    				tools.removeClass(noselect[i],"canMove");
+//									selElement=null; 
+//for循环执行很快，检测没有碰撞到最后一个循环的元素，就会清空
+				    			}
+				    		}
+			    		}
+		    			return;
+		    		}
+		    		if(absW>5||absH>5){
+		    			if(!div){
+		    				div=document.createElement("div");
+					    	div.className ="box";
+					    	document.body.appendChild(div);
+		    			}
+	    				div.style.width = absW+ "px";
+			    		div.style.height=absH+ "px";
+			    		div.style.left = Math.min( e.clientX,oriX ) + "px";
+			    		div.style.top = Math.min( e.clientY,oriY ) + "px";
+			    		for (var i = 0; i < items.length; i++) {//让div和每一个文件夹进行碰撞检测
+			    			if( tools.peng(div,items[i]) ){
+			    				tools.addClass(items[i],"active");//碰到
+			    			}else{
+			    				tools.removeClass(items[i],"active");
+			    			}
+			    		}
+		    		}
+		    	}
+		    	document.onmouseup = function(){
+		    		tools.isCheckAll();
+		    		//---存在就移除----
+		    		if(div){
+		    			document.body.removeChild( div );
+		    		}
+		    		if(fly){ 
+		    			document.body.removeChild( fly );
+		    			document.body.removeChild( faker );
+		    		}
+					document.onmousemove = null;
+	    			document.onmouseup =null;
+	    			if(selElement){
+	    				tools.removeClass(selElement,"canMove");
+	    				var onoff=true;
+						var childs=handle.getChildsById(datas,selElement.dataset.id);
+						for (var i = 0; i < selectArr.length; i++) {
+							var element=handle.getSelfById(datas,selectArr[i].dataset.id);
+							var isFind=childs.find(function(value){
+							    return value.title==element.title;
+							})
+							//没找到重名的就改数据并移除这个文件夹
+							if(isFind){
+								onoff=false;
+							}else{
+								element.pid=selElement.dataset.id;
+								fileCont.removeChild(selectArr[i]);
+							}
+						};
+						if(!onoff){ //找到就提示
+							tools.tipsGo("plzChoice","部分文件夹移动不成功");
+						}
+						list.innerHTML=createTreeHtml(intid);
+	    			}
+		    	}
+		    	return false;
+		    },false)
+			//--------------------------重命名-------------------------------
+			reName.addEventListener("mouseup",function(){
+				var arr=tools.isSelect(items);
+				if(arr.length>1){
+					tools.tipsGo("plzChoice","只能对单个文件进行重命名");
+				}else if(arr.length==1){
+					arr[0].lastElementChild.style.display="block";
+					arr[0].lastElementChild.previousElementSibling.style.display="none";
+					arr[0].lastElementChild.value=arr[0].lastElementChild.previousElementSibling.innerHTML;
+					arr[0].lastElementChild.select();
+					var inp=arr[0].lastElementChild;
+					inp.onblur=function(){ 
+						if(!inp.value.trim()){
+							tools.tipsGo("plzChoice","文件名不能为空");
+						}else if(inp.value==inp.previousElementSibling.innerHTML){
+							tools.tipsGo("plzChoice","文件名没有改变");
+						}else if(!tools.nameCheck(inp.value)){
+							tools.tipsGo("plzChoice","文件名不能重复");
+						}else{
+							handle.changeName(datas,inp.previousElementSibling.innerHTML,inp.value)
+							list.innerHTML=createTreeHtml(intid);
+							tools.tipsGo("delSuc","重命名成功");
+							tools.render(currentId);
+						}
+						inp.previousElementSibling.style.display="block";
+						inp.style.display="none";
+						tools.removeClass(inp.parentNode,"active");
+					}
+				}else{
+					tools.tipsGo("plzChoice","请选择要重命名的文件");
+				}
+			},false)
+
+			
+			//----------------------------移动到---------------------------------
+			move.addEventListener("mouseup",function(){
+				var arr=tools.isSelect(items);
+				var okDown=false; //false表示不能按下确定
+				var currentElement=null; //记录被点击的元素
+				var arrId=arr.map(function(value){ //返还传入元素的id
+					return value.dataset.id;
+				})
+				var seleArr=handle.getChildsAllByIdarr(datas,arrId); //根据传入的id数组被选中元素的所有子数据
+				if(arr.length>=1){
+					tools.tipBox({
+						title:"移动文件",
+						cont:createTreeHtml(intid),
+						okFn:function(){
+							if(!okDown){
+								return true; //表示不能被关闭
+							}
+							var onoff=true;
+							var childs=handle.getChildsById(datas,currentElement.dataset.id);
+							for (var i = 0; i < arr.length; i++) {
+								var element=handle.getSelfById(datas,arr[i].dataset.id);
+								var isFind=childs.find(function(value){
+								    return value.title==element.title;
+								})
+								
+								if(isFind){
+									onoff=false;
+								}else{
+									element.pid=currentElement.dataset.id;
+									fileCont.removeChild(arr[i]);
+								}
+							};
+							if(!onoff){
+								tools.tipsGo("plzChoice","部分文件夹移动不成功");
+							}
+							list.innerHTML=createTreeHtml(intid);
+						}
+					});
+					var cont=document.querySelector(".cont");
+					currentElement=cont.getElementsByClassName("div")[0];
+					var warnTip=cont.nextElementSibling; //提示框
+					currentElement.style.background="#e1e8ee";
+					cont.addEventListener("mouseup",function(e){ //弹出菜单的点击事件函数
+						var target=e.target;
+						if(target=tools.parent(target,".div")){
+							currentElement.style.background="";
+							target.style.background="#e1e8ee";
+							currentElement=target;
+							
+							var firstSelf=handle.getSelfById(datas,arr[0].dataset.id);
+							if(firstSelf.pid==target.dataset.id){
+								okDown=false; //不能关闭弹框
+								warnTip.innerHTML="已经在这个文件夹下了";
+								return;
+							}
+							
+							var onoff=seleArr.find(function(value){
+							    return value.id==target.dataset.id;
+							});
+							if(onoff){
+								warnTip.innerHTML="不能将文件移动到自身或其子文件夹下";
+								okDown=false;
+							}else{
+								warnTip.innerHTML="";
+								okDown=true; 
+							}
+						}
+					})
+					
+				}else{
+					tools.tipsGo("plzChoice","请选择要移动的文件");
+				}
+			},false)
+		</script>
+	</body>
+</html>
