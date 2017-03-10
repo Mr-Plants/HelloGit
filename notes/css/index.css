@@ -2,71 +2,78 @@ body{
 	margin: 0;
 	font-family: "微软雅黑";
 	background: #fff;
+	overflow: hidden;
 }
 ul{
 	padding: 0;
 	margin: 0;
 	list-style: none;
 }
+*{ 
+	/*去除最新版本chrome触控警告*/
+	touch-action: none; 
+}
 header{
-	height: 8.8rem;
+	height: 1.76rem;
 	border-bottom:1px solid #ccc;
 	position: relative;
-	line-height:8.8rem;
+	line-height:1.76rem;
 }
 header h1{
 	height: 100%;
-	font-size:3.4rem;
+	font-size:0.68rem;
 	text-align: center;
 	font-weight: normal;
 	margin: 0;
 }
 header .edit{
 	height: 100%;
-	font-size:3.4rem;
+	font-size:0.68rem;
 	position: absolute;
-	right: 3rem;
+	right: 0.6rem;
 	top:0;
 	font-weight: bold;
 	color:#e4af0a;
-	padding: 0 2rem;
+	padding: 0 0.4rem;
 }
 section .serBox{
-	margin: 1.6rem 0;
+	height: 1.12rem;
+	margin: 0.3rem 0;
 	position: relative;
 }
 section .serBox img{
 	position: absolute;
-	left: 3.8rem;
-	top: 1.8rem;
-	width: 2.2rem;
+	left: 0.75rem;
+	top: 0.4rem;
+	width: 0.44rem;
 }
 section .serBox .cancel{
 	position: absolute;
 	right:0;
-	top: 0;
-	height: 100%;
-	font:3.2rem/5.6rem "微软雅黑";
+	top:0;
+	font:bold 0.64rem/1.12rem "微软雅黑";
 	color:#e1a60a;
-	padding: 0 2rem;
+	padding: 0 0.4rem;
 	display: none;
 }
 section .serBox .search{
-	width:71.8rem;
-	height: 5.6rem;
-	margin:0 auto;
-	font-size: 2.6rem;
-	text-indent: 6rem;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width:14.36rem;
+	height: 1.12rem;
+	font-size: 0.52rem;
+	text-indent: 1.2rem;
 	padding: 0;
 	border:none;
-	border-radius: 1rem;
-	margin-left: 1.6rem;
+	border-radius: 0.2rem;
+	margin-left: 0.32rem;
 	outline: none;
 	background: rgba(0,0,0,0.05);
-	transition: 0.3s;
+	transition: 0.2s;
 }
 .content li{
-	height: 12.2rem;
+	height: 2.44rem;
 	position: relative;
 	/*360等浏览器兼容性处理*/
 	overflow: hidden;  
@@ -75,48 +82,49 @@ section .serBox .search{
 .content li .context{
 	position: absolute;
 	top: 0;
-	left:-7.6rem;
+	left:-1.52rem;
 	z-index: 1;
-	width: 82.6rem;
-	height:12.1rem;
+	width: 16.52rem;
+	height:2.42rem;
 	background: #fff;
 }
 .content li .context .checkbox{
 	position: absolute;
 	top: 0;
-	left:2.4rem;
+	left:0.48rem;
 	bottom: 0;
-	width: 4rem;
-	height:4rem;
+	width: 0.8rem;
+	height:0.8rem;
 	border:2px solid #c7c7cc;
 	border-radius: 50%;
 	margin:auto 0;
-	font:2rem/4rem arial;
-	text-align: center;
-	color:#fff;
 }
 .content li .context .text{
 	position: absolute;
 	top: 0;
-	left: 13.2rem;
+	left: 2.64rem;
 	height:100%;
-	width: 69.4rem;	
+	width: 13.88rem;	
 }
 .content li .context .text .title{
-	margin-top: 2.4rem;
-	font-size:3.4rem;
-	line-height: 3.4rem;
-	width: 56rem;
+	margin-top: 0.48rem;
+	font-size:0.68rem;
+	line-height: 0.68rem;
+	width: 11.2rem;
 	color:#353535;
 	white-space: nowrap;  
 	text-overflow:ellipsis; 
 	overflow:hidden;
 }
+/*--标记--*/
+.content .red .context .text .title{
+	color:red;
+}
 .content li .context .text .Info{
-	width: 56rem;
-	margin-top: 1rem;
-	font-size:3rem;
-	line-height: 3rem;
+	width: 11.2rem;
+	margin-top: 0.2rem;
+	font-size:0.6rem;
+	line-height: 0.6rem;
 	color:#5f5f5f;
 	white-space: nowrap;  
 	text-overflow:ellipsis; 
@@ -133,18 +141,18 @@ section .serBox .search{
 .content li .delete{
 	position: absolute;
 	top: 0;
-	left: 5.6rem;
-	height:12.1rem;
-	width: 69.4rem;	
+	left: 1.12rem;
+	height:2.42rem;
+	width: 13.88rem;	
 	border-bottom: 1px solid #c8c7cc;
 }
 .content li .delete .mark{
 	position: absolute;
 	top: 0;
-	right: 13.4rem;
-	height:12.1rem;
-	width: 13.4rem;	
-	font:3.4rem/12.1rem "微软雅黑";
+	right: 2.68rem;
+	height:2.42rem;
+	width: 2.68rem;	
+	font:0.68rem/2.42rem "微软雅黑";
 	color:#fff;
 	text-align: center;
 	background: #c7c7cc;
@@ -153,9 +161,9 @@ section .serBox .search{
 	position: absolute;
 	top: 0;
 	right: 0;
-	height:12.1rem;
-	width: 13.4rem;	
-	font:3.4rem/12.1rem "微软雅黑";
+	height:2.42rem;
+	width: 2.68rem;	
+	font:0.68rem/2.42rem "微软雅黑";
 	color:#fff;
 	text-align: center;
 	background: #ff3b30;
@@ -167,29 +175,29 @@ footer{
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	height: 8.8rem;
+	height: 1.76rem;
 	border-top: 1px solid #c8c7cc;
 }
 footer .count{
 	width: 100%;
-	font:2.6rem/8.8rem "微软雅黑";
+	font:0.52rem/1.76rem "微软雅黑";
 	text-align: center;
 }
 footer .create{
 	position: absolute;
-	right:2.5rem;
+	right:0.5rem;
 	top: 0;
-	width: 10.4rem;
-	height: 8.8em;
+	width: 2.08rem;
+	height: 1.76em;
 	background: url(../img/create.png) no-repeat center center;
-	background-size: 5rem;
+	background-size: 1rem;
 }
 footer .markAll{
 	position: absolute;
 	left: 0;
 	top: 0;
-	font: bold 3.4rem/8.8rem "微软雅黑";
-	padding: 0 3rem;
+	font: bold 0.68rem/1.76rem "微软雅黑";
+	padding: 0 0.6rem;
 	color:#e4af0a;
 	display: none;
 }
@@ -197,8 +205,79 @@ footer .deleteAll{
 	position: absolute;
 	right: 0;
 	top: 0;
-	font: bold 3.4rem/8.8rem "微软雅黑";
-	padding: 0 3rem;
+	font: bold 0.68rem/1.76rem "微软雅黑";
+	padding: 0 0.6rem;
 	color:#e4af0a;
 	display: none;
+}
+
+.tips{
+	position: absolute;
+	left: 0;
+	bottom: -5.2rem;
+	width:100%;
+	margin: 0 auto;
+	z-index: 5;
+	transition: 0.3s;
+	display: none;
+}
+.tips div{
+	background: #fff;
+	border-radius: 0.6rem;
+	width: 14.2rem;
+	height: 2.28rem;
+	text-align: center;
+	font:0.76rem/2.28rem "微软雅黑";
+	color:#e4af0a;
+	margin: 0 auto;
+	margin-bottom: 0.32rem;
+}
+.tips .sure{
+	color:#ff3b30;
+}
+/*------遮罩层------*/
+#mask{  
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0,0,0,0.4);
+	z-index: 3;
+	display: none;
+}
+
+#contShow{
+	position: fixed;
+	top: 0;
+	left: 15rem;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+	background: #fff;
+	transition: 0.3s;
+}
+#contShow .time{
+	text-align: center;
+	color:#a6aaa9;
+	font:0.56rem/1.2rem "微软雅黑";
+	border-top:1px solid #ccc;
+}
+#contShow .words{
+	min-height: 10rem;
+	padding: 0 0.8rem;
+	color:#454545;
+	font:0.64rem/0.96rem "微软雅黑";
+	outline: none;
+	/*阻止ios输入框点击高亮*/
+	-webkit-tap-highlight-color:rgba(255,255,255,0);
+}
+#contShow .back{
+	width: 3rem;
+	font:bold 0.68rem/1.76rem "微软雅黑";
+	color:#e4af0a;
+}
+#contShow .back span{
+	font-size: 0.9rem;
+	margin-left: 0.5rem;
 }

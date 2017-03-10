@@ -7,12 +7,14 @@
 			var dpr=1/window.devicePixelRatio;
 			document.write('<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale='+dpr+',minimum-scale='+dpr+',maximum-scale='+dpr+'" />')
 			var html=document.documentElement;
-			var rem=html.clientWidth/75
+			var rem=html.clientWidth/15
 			html.style.fontSize=rem+"px";
 			//阻止默认行为，防止ios10下禁用缩放失效
-			document.addEventListener("touchstart",function(e){
+			document.addEventListener("touchstart",prevd)
+			function prevd(e){
 				e.preventDefault();
-			})
+			}
+			
 		</script>
 		<link rel="stylesheet" href="css/index.css" />
 		<script src="js/zepto.min.js" ></script>
@@ -29,24 +31,7 @@
 				<img src="img/search.png" alt="" />
 				<span class="cancel">取消</span>
 			</div>
-			<ul class="content">
-				<!--<li>
-					<div class="context">
-						<div class="checkbox"></div>
-						<div class="text">
-							<div class="title">春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟春眠不觉晓，处处闻啼鸟</div>
-							<div class="Info">
-								<span class="date">2017/2/18</span>
-								<span class="detial">鸟春眠不觉晓，处处闻啼鸟鸟春眠不觉晓，处处闻啼鸟鸟春眠不觉晓，处处闻啼鸟鸟春眠不觉晓，处处闻啼鸟夜来风雨声，花落知多少</span>
-							</div>
-						</div>
-					</div>
-					<div class="delete">
-						<div class="mark">标记</div>
-						<div class="delBtn">删除</div>
-					</div>
-				</li>-->
-			</ul>
+			<ul class="content"></ul>
 		</section>
 		<footer>
 			<div class="markAll">标记全部</div>
@@ -54,6 +39,22 @@
 			<div class="create"></div>
 			<div class="deleteAll">删除全部</div>
 		</footer>
+		<div class="tips">
+			<div class="sure">全部删除</div>
+			<div class="giveUp">取消</div>
+		</div>
+		<div id="mask"></div>
+		<div id="contShow">
+			<div class="head">
+				<div class="back">
+					<span>❮</span>
+					返回
+				</div>
+			</div>
+			
+			<div class="time">2017年2月18号 11:33</div>
+			<div class="words" contenteditable="true"></div>
+		</div>
 		<script src="js/index.js"></script>
 	</body>
 </html>
